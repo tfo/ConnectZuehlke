@@ -33,6 +33,7 @@ public class RemoteInsightRestTemplateConfiguration {
                 .rootUri(insightProperties.getUrl())
                 .build();
 
+
         String user = insightProperties.getAuthentication().getUsername();
         String password = insightProperties.getAuthentication().getPassword();
 
