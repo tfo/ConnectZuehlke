@@ -33,7 +33,6 @@ import {HackathonHeadlineComponent} from './hackathon-headline/hackathon-headlin
 import {SidebarComponent} from './navigation/sidebar/sidebar.component';
 import {TopbarComponent} from './navigation/topbar/topbar.component';
 import {EmployeeDetailComponent} from './employee-detail/employee-detail.component';
-import {MapComponent} from './map/map.component';
 import {AgmCoreModule} from '@agm/core';
 import {ErrorRequestInterceptor} from './common/error-request-interceptor';
 
@@ -55,8 +54,7 @@ library.add(faAngular);
     HackathonHeadlineComponent,
     SidebarComponent,
     TopbarComponent,
-    EmployeeDetailComponent,
-    MapComponent
+    EmployeeDetailComponent
   ],
   imports: [
     BrowserModule,
