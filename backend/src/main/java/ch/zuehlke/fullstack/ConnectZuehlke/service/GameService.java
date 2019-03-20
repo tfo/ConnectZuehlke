@@ -35,7 +35,12 @@ public class GameService {
     private List<Employee> chooseEmployees(List<Employee> allEmployees, int numberOfEmployees) {
         Set<Integer> indexes = new HashSet<>(numberOfEmployees);
         while (indexes.size() < numberOfEmployees) {
-            indexes.add((int)(Math.random() * allEmployees.size()));
+            int index = (int) (Math.random() * allEmployees.size());
+            if (index == allEmployees.size()) {
+                index--;
+            }
+
+            indexes.add(index);
         }
 
         return indexes.stream()
@@ -45,6 +50,9 @@ public class GameService {
 
     private Employee selectEmployee(List<Employee> chosenEmployees) {
         int index = (int) (Math.random() * chosenEmployees.size());
+        if (index == chosenEmployees.size()) {
+            index--;
+        }
 
         return chosenEmployees.get(index);
     }
