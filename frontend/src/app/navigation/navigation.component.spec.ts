@@ -4,7 +4,6 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 
 import {NavigationComponent} from './navigation.component';
-import {SidebarComponent} from './sidebar/sidebar.component';
 import {TopbarComponent} from './topbar/topbar.component';
 import {RouterTestingModule} from '@angular/router/testing';
 
@@ -16,7 +15,6 @@ describe('NavigationComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         NavigationComponent,
-        SidebarComponent,
         TopbarComponent,
       ],
       imports: [
