@@ -1,15 +1,15 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {HackathonHeadlineComponent} from './hackathon-headline.component';
+import {GameComponent} from './game.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
-describe('HackathonHeadlineComponent', () => {
-  let component: HackathonHeadlineComponent;
-  let fixture: ComponentFixture<HackathonHeadlineComponent>;
+describe('GameComponent', () => {
+  let component: GameComponent;
+  let fixture: ComponentFixture<GameComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HackathonHeadlineComponent],
+      declarations: [GameComponent],
       imports: [
         FontAwesomeModule,
       ]
@@ -18,7 +18,7 @@ describe('HackathonHeadlineComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HackathonHeadlineComponent);
+    fixture = TestBed.createComponent(GameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
