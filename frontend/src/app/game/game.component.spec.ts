@@ -31,6 +31,6 @@ describe('GameComponent', () => {
   it('should render title in a h1 tag', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to Zühlke Connect!');
+    expect(compiled.querySelector('h1').textContent).toContain('Guess the secret Zühlke Employee!');
   });
 });
