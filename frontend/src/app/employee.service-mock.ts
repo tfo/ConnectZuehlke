@@ -1,5 +1,5 @@
 import {Observable, of} from 'rxjs';
-import {Employee} from '../domain/Employee';
+import {Employee} from './domain/Employee';
 
 export const EMPLOYEES: Employee[] = [
   {firstName: 'John', lastName: 'Doe', id: 1, code: 'jdo', location: 'Schlieren'},

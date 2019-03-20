@@ -3,6 +3,8 @@ package ch.zuehlke.fullstack.ConnectZuehlke.service;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.stream.IntStream;
 
 @Service
 public class GameService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameService.class);
 
     private final InsightEmployeeService employeeService;
 
@@ -29,7 +33,11 @@ public class GameService {
         List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
         Employee selectedEmployee = selectEmployee(chosenEmployees);
 
-        return new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee);
+        Game game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee);
+
+        LOGGER.info("Created a new game '{}' with '{}' employees.", game.getId(), numberOfEmployees);
+
+        return game;
     }
 
     private List<Employee> chooseEmployees(List<Employee> allEmployees, int numberOfEmployees) {
