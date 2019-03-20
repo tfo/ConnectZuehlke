@@ -10,8 +10,6 @@ import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image
 
 
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {EmployeeListComponent} from './employee-list/employee-list.component';
-import {EmployeeComponent} from './employee-list/employee/employee.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {SearchPipe} from './search.pipe';
@@ -29,10 +27,8 @@ import {
 } from '@angular/material';
 import {NavigationComponent} from './navigation/navigation.component';
 import {LayoutModule} from '@angular/cdk/layout';
-import {HackathonHeadlineComponent} from './hackathon-headline/hackathon-headline.component';
-import {SidebarComponent} from './navigation/sidebar/sidebar.component';
+import {GameComponent} from './game/game.component';
 import {TopbarComponent} from './navigation/topbar/topbar.component';
-import {EmployeeDetailComponent} from './employee-detail/employee-detail.component';
 import {AgmCoreModule} from '@agm/core';
 import {ErrorRequestInterceptor} from './common/error-request-interceptor';
 
@@ -46,15 +42,11 @@ library.add(faAngular);
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeComponent,
-    EmployeeListComponent,
     PageNotFoundComponent,
     SearchPipe,
     NavigationComponent,
-    HackathonHeadlineComponent,
-    SidebarComponent,
-    TopbarComponent,
-    EmployeeDetailComponent
+    GameComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,
