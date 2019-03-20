@@ -14,6 +14,8 @@ public class EmployeeDto {
     private int id;
     @JsonProperty("Code")
     private String code;
+    @JsonProperty("Location")
+    private String location;
 
     public String getLastName() {
         return lastName;
@@ -28,11 +30,14 @@ public class EmployeeDto {
     }
 
     public Employee toEmployee() {
-        return new Employee(getFirstName(), getLastName(), getId(), getCode());
+        return new Employee(getFirstName(), getLastName(), getId(), getCode(), getLocation());
     }
 
     private String getCode() {
         return code;
     }
 
+    public String getLocation() {
+        return location;
+    }
 }
