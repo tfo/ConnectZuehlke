@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/fullstackhackathon/ConnectZuehlke.svg)](https://travis-ci.com/fullstackhackathon/ConnectZuehlke)
+[![Build Status](https://travis-ci.org/tfo/ConnectZuehlke.svg)](https://travis-ci.org/tfo/ConnectZuehlke)
 
 # Fullstack Hackathon - Spring meets Angular
 
