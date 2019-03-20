@@ -40,7 +40,7 @@ public class EmployeeRestControllerTest {
 
     @Test
     public void testGetUsers() throws Exception {
-        when(employeeService.getEmployees()).thenReturn(Arrays.asList(new Employee("Max", "Mustermann", 1)));
+        when(employeeService.getEmployees()).thenReturn(Collections.singletonList(new Employee("Max", "Mustermann", 1, "Eschborn")));
         mockMvc.perform(get("/api/employees"))
                 .andExpect(content().json("[\n" +
                         "  {\n" +
