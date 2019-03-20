@@ -35,8 +35,6 @@ import {TopbarComponent} from './navigation/topbar/topbar.component';
 import {EmployeeDetailComponent} from './employee-detail/employee-detail.component';
 import {MapComponent} from './map/map.component';
 import {AgmCoreModule} from '@agm/core';
-import {CustomerListComponent} from './customer-list/customer-list.component';
-import {CustomerComponent} from './customer-list/customer/customer.component';
 import {ErrorRequestInterceptor} from './common/error-request-interceptor';
 
 
@@ -58,9 +56,7 @@ library.add(faAngular);
     SidebarComponent,
     TopbarComponent,
     EmployeeDetailComponent,
-    MapComponent,
-    CustomerListComponent,
-    CustomerComponent
+    MapComponent
   ],
   imports: [
     BrowserModule,
