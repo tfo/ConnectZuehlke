@@ -1,7 +1,7 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.rest;
 
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.EmployeeBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import static org.mockito.Mockito.when;
@@ -40,7 +39,7 @@ public class EmployeeRestControllerTest {
 
     @Test
     public void testGetUsers() throws Exception {
-        when(employeeService.getEmployees()).thenReturn(Collections.singletonList(new Employee("Max", "Mustermann", 1, "Eschborn")));
+        when(employeeService.getEmployees()).thenReturn(Collections.singletonList(new EmployeeBuilder().setFirstName("Max").setLastName("Mustermann").setCode("mmu").setId(1).setLocation("Eschborn").createEmployee()));
         mockMvc.perform(get("/api/employees"))
                 .andExpect(content().json("[\n" +
                         "  {\n" +

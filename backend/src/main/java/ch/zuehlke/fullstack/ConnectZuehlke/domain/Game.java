@@ -1,6 +1,5 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Game {
@@ -14,12 +13,7 @@ public class Game {
         this.id = id;
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
-        this.questions = createQuestions();
-    }
-
-    private List<Question> createQuestions() {
-        //TODO create questions based on employees and selectedEmployee
-        return Collections.emptyList();
+        this.questions = new QuestionCreator(employees, selectedEmployee).getQuestions();
     }
 
     public Employee getSelectedEmployee() {

@@ -1,6 +1,7 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.dto;
 
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.EmployeeBuilder;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,7 +41,7 @@ public class EmployeeDto {
     private int id;
 
     public Employee toEmployee() {
-        return new Employee(getFirstName(), getLastName(), getId(), getCode(), getLocation(), getPercentage(), isManagement(), isPassionated(), isFlexpay(), getExperience(), getSkillProfileCompleteness(), getEntryDate(), getGrade(), getGender(), getPrivateAddressCity(), getBankHours());
+        return new EmployeeBuilder().setFirstName(getFirstName()).setLastName(getLastName()).setId(getId()).setCode(getCode()).setLocation(getLocation()).setPercentage(getPercentage()).setIsManagement(isManagement()).setIsPassionated(isPassionated()).setFlexpay(isFlexpay()).setExperience(getExperience()).setSkillProfileCompleteness(getSkillProfileCompleteness()).setEntryDate(getEntryDate()).setGrade(getGrade()).setGender(getGender()).setPrivateAddressCity(getPrivateAddressCity()).setBankHours(getBankHours()).createEmployee();
     }
 
     public String getLastName() {
