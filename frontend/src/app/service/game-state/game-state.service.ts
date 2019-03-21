@@ -32,15 +32,28 @@ export class GameStateService {
   public guess(answer: Answer): boolean {
     this.questionCount++;
 
-    let matchSecretEmployee = this.matchSecretEmployee(answer);
+    const matchSecretEmployee = this.matchSecretEmployee(answer);
     if (matchSecretEmployee === true) {
       this.missedQuestionCount++;
     }
 
+    this.hideMissmatchingEmployees(answer);
+
     return matchSecretEmployee;
   }
 
+  private matchEmployee(answer: Answer, employee: Employee): boolean {
+    return answer.ids.includes(employee.id);
+  }
+
   private matchSecretEmployee(answer: Answer): boolean {
-    return answer.ids.includes(this.secretEmployee.id);
+    return this.matchEmployee(answer, this.secretEmployee);
+  }
+
+  private hideMissmatchingEmployees(answer: Answer): void {
+    this.employees
+      .filter(employee => employee.hidden === false)
+      .filter(employee => answer.ids.includes(employee.id))
+      .every(employee => employee.hidden = true);
   }
 }
