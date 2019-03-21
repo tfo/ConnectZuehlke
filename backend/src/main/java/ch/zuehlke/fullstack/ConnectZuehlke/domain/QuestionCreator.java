@@ -42,9 +42,9 @@ class QuestionCreator {
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
-        return new Question(generateId(), "Does the person work full time (100%) for Zühlke?", Arrays.asList(
-                new Answer(generateId(), "Yes", yesMatchingEmployeeIds, "The secret person works full time."),
-                new Answer(generateId(), "No", noMatchingEmployeeIds, "The secret person works part time.")
+        return new Question(generateId(), "Does the person work ... for Zühlke?", Arrays.asList(
+                new Answer(generateId(), "full time", yesMatchingEmployeeIds, "The secret person works full time."),
+                new Answer(generateId(), "part time", noMatchingEmployeeIds, "The secret person works part time.")
         ));
     }
 
@@ -76,9 +76,9 @@ class QuestionCreator {
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
-        return new Question(generateId(), "Has the person completed the skill profile?", Arrays.asList(
-                new Answer(generateId(), "Completed", completedIds, "The secret person has completed her/his skill profile."),
-                new Answer(generateId(), "Not completed", notCompletedIds, "The secret person has not completed her/his skill profile.")
+        return new Question(generateId(), "Has the person ... her/his skill profile?", Arrays.asList(
+                new Answer(generateId(), "completed", completedIds, "The secret person has completed her/his skill profile."),
+                new Answer(generateId(), "not completed", notCompletedIds, "The secret person has not completed her/his skill profile.")
         ));
     }
 
@@ -110,7 +110,7 @@ class QuestionCreator {
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
-        return new Question(generateId(), "What's the sex of the person?", Arrays.asList(
+        return new Question(generateId(), "The person is ...?", Arrays.asList(
                 new Answer(generateId(), "Male", maleIds, "The secret person is male."),
                 new Answer(generateId(), "Female", femaleIds, "The secret person is female.")
         ));
@@ -127,9 +127,9 @@ class QuestionCreator {
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
-        return new Question(generateId(), "Does the person have flexpay?", Arrays.asList(
-                new Answer(generateId(), "Yes", flexPayerIds, "The secret person has a flexible salary."),
-                new Answer(generateId(), "No", fixPayerIds, "The secret person a fixed salary.")
+        return new Question(generateId(), "The person has ...?", Arrays.asList(
+                new Answer(generateId(), "flex salary", flexPayerIds, "The secret person has a flexible salary."),
+                new Answer(generateId(), "fix salary", fixPayerIds, "The secret person a fixed salary.")
         ));
     }
 
@@ -156,11 +156,6 @@ class QuestionCreator {
         return new Question(generateId(), "The person works in ...?", answers);
     }
 
-    private static boolean isInSwitzerland(String location) {
-        return location.equalsIgnoreCase("Schlieren") ||
-                location.equalsIgnoreCase("Bern");
-    }
-
     private Question createEntryDateQuestion() {
         Set<Integer> oldIds = employees.stream()
                 .filter(employee -> worksForLongInZuehlke(employee.getEntryDate()))
@@ -172,9 +167,9 @@ class QuestionCreator {
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
-        return new Question(generateId(), "Did the join before 2017?", Arrays.asList(
-                new Answer(generateId(), "Before 2017", oldIds, "The secret person started before 2017 at Zühlke."),
-                new Answer(generateId(), "After 2017", youngIds, "The secret person started after 2017 at Zühlke.")
+        return new Question(generateId(), "The person joined Zühlke ...?", Arrays.asList(
+                new Answer(generateId(), "before 2017", oldIds, "The secret person started before 2017 at Zühlke."),
+                new Answer(generateId(), "after 2017", youngIds, "The secret person started after 2017 at Zühlke.")
         ));
     }
 
