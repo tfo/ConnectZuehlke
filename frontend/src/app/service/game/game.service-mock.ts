@@ -1,11 +1,11 @@
 import {Observable, of} from 'rxjs';
 import {Injectable} from '@angular/core';
 
-import {Answer} from '../domain/Answer';
-import {Game} from '../domain/Game';
-import {Question} from '../domain/Question';
-import {SECRET_EMPLOYEES} from '../service/employee/employee.service-mock';
-import {GameService} from "../service/game/game.service";
+import {Answer} from '../../domain/Answer';
+import {Game} from '../../domain/Game';
+import {Question} from '../../domain/Question';
+import {SECRET_EMPLOYEES} from '../employee/employee.service-mock';
+import {GameService} from "./game.service";
 
 
 export const QUESTIONS: Question[] = [
