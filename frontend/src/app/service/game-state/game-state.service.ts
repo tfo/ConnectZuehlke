@@ -16,6 +16,7 @@ export class GameStateService {
 
   questionCount: number;
   missedQuestionCount: number;
+  hasWon: boolean;
 
   constructor() {}
 
@@ -41,16 +42,13 @@ export class GameStateService {
       this.missedQuestionCount++;
       this.hideMismatchingEmployeesByAnswer(answer);
     }
+    this.hasWon = this.employees.filter(value => value.hidden == false).length == 1;
 
     return matchSecretEmployee;
   }
 
-  private matchEmployee(answer: Answer, employee: Employee): boolean {
-    return answer.matchingEmployeeIds.includes(employee.id);
-  }
-
   private matchSecretEmployee(answer: Answer): boolean {
-    return this.matchEmployee(answer, this.secretEmployee);
+    return answer.matchingEmployeeIds.includes(this.secretEmployee.id);
   }
 
   private hideMismatchingEmployeesByAnswers(answers: Answer[]): void {
