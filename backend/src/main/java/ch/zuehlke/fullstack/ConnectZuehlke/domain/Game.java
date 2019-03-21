@@ -16,7 +16,7 @@ public class Game {
         this.id = id;
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
-        this.questions = new QuestionCreator(employees, selectedEmployee).getQuestions();
+        this.questions = new QuestionCreator(employees, selectedEmployee).create();
     }
 
     public boolean hasUniqueSolution() {
