@@ -2,6 +2,8 @@ package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CountryTest {
@@ -9,16 +11,21 @@ public class CountryTest {
     @Test
     public final void testForLocationWithExistingLocation() {
         // Execute the test case
-        Country actual = Country.forLocation("Bern");
+        Optional<Country> actual = Country.forLocation("Bern");
 
         // Verify the test results
         assertThat(actual)
-                .isEqualTo(Country.SWITZERLAND);
+                .isPresent()
+                .contains(Country.SWITZERLAND);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public final void testForLocationWithUnknownLocationShouldRaiseException() {
+    @Test
+    public final void testForLocationWithUnknownLocation() {
         // Execute the test case
-        Country.forLocation("Prag");
+        Optional<Country> actual = Country.forLocation("Prag");
+
+        // Verify the test results
+        assertThat(actual)
+                .isNotPresent();
     }
 }
