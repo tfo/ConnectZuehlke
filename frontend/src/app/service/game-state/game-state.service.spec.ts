@@ -1,7 +1,7 @@
 import {async, TestBed} from '@angular/core/testing';
 import {GameStateService} from './game-state.service';
-import {GameStateTestData} from "./game-state-test-data";
-import {Game} from "../../domain/Game";
+import {GameStateTestData} from './game-state-test-data';
+import {Game} from '../../domain/Game';
 
 describe('GameStateService', () => {
   let service: GameStateService;

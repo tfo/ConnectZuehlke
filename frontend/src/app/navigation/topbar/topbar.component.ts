@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {GameStateService} from "../../service/game-state/game-state.service";
+import {GameStateService} from '../../service/game-state/game-state.service';
 
 @Component({
   selector: 'app-topbar',

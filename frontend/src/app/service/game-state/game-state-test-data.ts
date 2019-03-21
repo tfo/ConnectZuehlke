@@ -1,7 +1,7 @@
-import {Employee} from "../../domain/Employee";
-import {Answer} from "../../domain/Answer";
-import {Question} from "../../domain/Question";
-import {Game} from "../../domain/Game";
+import {Employee} from '../../domain/Employee';
+import {Answer} from '../../domain/Answer';
+import {Question} from '../../domain/Question';
+import {Game} from '../../domain/Game';
 
 export class GameStateTestData {
 
