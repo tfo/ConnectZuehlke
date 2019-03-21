@@ -21,7 +21,7 @@ public class GameRestController {
         this.service = service;
     }
 
-    @GetMapping("/game")
+    @GetMapping("/api/game")
     public Game createGame() {
         return this.service.createGame(15);
     }
