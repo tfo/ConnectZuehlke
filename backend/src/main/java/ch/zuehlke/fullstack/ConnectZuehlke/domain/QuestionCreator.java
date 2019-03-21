@@ -1,8 +1,6 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class QuestionCreator {
@@ -80,13 +78,23 @@ class QuestionCreator {
     }
 
     private Question createLocationQuestion() {
-        List<Integer> swissIds = employees.stream().filter(employee -> isInSwitzerland(employee.getLocation())).map(Employee::getId).collect(Collectors.toList());
-        Answer swiss = new Answer("0","Yes", swissIds);
+        Map<Country, List<Integer>> employeePerCountry = new HashMap<>();
+        for (Employee employee : employees) {
+            Country country = Country.forLocation(employee.getLocation());
+            employeePerCountry
+                    .computeIfAbsent(country, key -> new ArrayList<>())
+                    .add(employee.getId());
+        }
 
-        List<Integer> notSwissWorkers = employees.stream().filter(employee -> !isInSwitzerland(employee.getLocation())).map(Employee::getId).collect(Collectors.toList());
-        Answer notSwiss = new Answer("1","No", notSwissWorkers);
+        List<Answer> answers = new ArrayList<>();
+        for (Map.Entry<Country, List<Integer>> entry : employeePerCountry.entrySet()) {
+            Country country = entry.getKey();
+            List<Integer> matchingEmployeeIds = entry.getValue();
 
-        return new Question("5","Does the person work in Switzerland?", Arrays.asList(swiss, notSwiss));
+            answers.add(new Answer(UUID.randomUUID().toString(), country.getName(), matchingEmployeeIds));
+        }
+
+        return new Question("5","The person works in ...?", answers);
     }
 
     private static boolean isInSwitzerland(String location) {
