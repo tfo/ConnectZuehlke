@@ -34,7 +34,7 @@ public class EmployeeRestController {
             produces = MediaType.IMAGE_JPEG_VALUE
     )
     public @ResponseBody
-    byte[] getEmployeePicture(@PathVariable(value = "id") int id) throws IOException {
+    byte[] getEmployeePicture(@PathVariable(value = "id") String id) throws IOException {
         return employeeService.getEmployeePicture(id);
     }
 }

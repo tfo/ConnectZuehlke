@@ -9,7 +9,7 @@ public interface InsightEmployeeService {
 
   List<Employee> getEmployees();
 
-  byte[] getEmployeePicture(int id) throws IOException;
+  byte[] getEmployeePicture(String id) throws IOException;
 
   Employee getEmployee(String code);
 }

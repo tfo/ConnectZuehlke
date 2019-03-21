@@ -38,7 +38,7 @@ public class InsightEmployeeServiceRemote implements InsightEmployeeService {
     }
 
     @Override
-    public byte[] getEmployeePicture(int id) {
+    public byte[] getEmployeePicture(String id) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
 
