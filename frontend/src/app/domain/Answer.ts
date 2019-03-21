@@ -2,10 +2,12 @@ export class Answer {
   id: string;
   title: string;
   matchingEmployeeIds: number[];
+  fact: string;
 
-  constructor(id: string, title: string, ids: number[]) {
+  constructor(id: string, title: string, matchingEmployeeIds: number[], fact: string) {
     this.id = id;
     this.title = title;
-    this.matchingEmployeeIds = ids;
+    this.matchingEmployeeIds = matchingEmployeeIds;
+    this.fact = fact;
   }
 }
