@@ -10,7 +10,7 @@ export const GAME: Game = {
 };
 
 export class GameServiceMock implements GameService {
-  createNewGame(): Observable<Game> {
+  public createNewGame(): Observable<Game> {
     return of(GAME);
   }
 }
