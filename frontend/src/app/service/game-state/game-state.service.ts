@@ -29,31 +29,38 @@ export class GameStateService {
     this.missedQuestionCount = 0;
   }
 
-  public guess(answer: Answer): boolean {
+  public guess(question: Question, answer: Answer): boolean {
     this.questionCount++;
 
     const matchSecretEmployee = this.matchSecretEmployee(answer);
     if (matchSecretEmployee === true) {
-      this.missedQuestionCount++;
-    }
+      const answers = question.getAllAnswersExcept(answer);
 
-    this.hideMissmatchingEmployees(answer);
+      this.hideMismatchingEmployeesByAnswers(answers);
+    } else {
+      this.missedQuestionCount++;
+      this.hideMismatchingEmployeesByAnswer(answer);
+    }
 
     return matchSecretEmployee;
   }
 
   private matchEmployee(answer: Answer, employee: Employee): boolean {
-    return answer.ids.includes(employee.id);
+    return answer.matchingEmployeeIds.includes(employee.id);
   }
 
   private matchSecretEmployee(answer: Answer): boolean {
     return this.matchEmployee(answer, this.secretEmployee);
   }
 
-  private hideMissmatchingEmployees(answer: Answer): void {
+  private hideMismatchingEmployeesByAnswers(answers: Answer[]): void {
+    answers.forEach(answer => this.hideMismatchingEmployeesByAnswer(answer));
+  }
+
+  private hideMismatchingEmployeesByAnswer(answer: Answer): void {
     this.employees
       .filter(employee => employee.hidden === false)
-      .filter(employee => answer.ids.includes(employee.id))
+      .filter(employee => answer.matchingEmployeeIds.includes(employee.id))
       .every(employee => employee.hidden = true);
   }
 }

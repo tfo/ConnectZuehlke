@@ -7,12 +7,12 @@ public class Answer {
 
     private final String id;
     private final String title;
-    private final List<Integer> ids;
+    private final List<Integer> matchingEmployeeIds;
 
-    public Answer(String id, String title, List<Integer> ids) {
+    public Answer(String id, String title, List<Integer> matchingEmployeeIds) {
         this.id = id;
         this.title = title;
-        this.ids = ids;
+        this.matchingEmployeeIds = matchingEmployeeIds;
     }
 
     public String getId() {
@@ -23,8 +23,8 @@ public class Answer {
         return title;
     }
 
-    public List<Integer> getIds() {
-        return ids;
+    public List<Integer> getMatchingEmployeeIds() {
+        return matchingEmployeeIds;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class Answer {
         Answer answer = (Answer) o;
         return Objects.equals(id, answer.id) &&
                 Objects.equals(title, answer.title) &&
-                Objects.equals(ids, answer.ids);
+                Objects.equals(matchingEmployeeIds, answer.matchingEmployeeIds);
     }
 
     @Override
@@ -42,3 +42,4 @@ public class Answer {
         return Objects.hash(id);
     }
 }
+

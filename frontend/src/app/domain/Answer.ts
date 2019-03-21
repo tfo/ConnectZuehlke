@@ -1,11 +1,11 @@
 export class Answer {
   id: string;
   title: string;
-  ids: number[];
+  matchingEmployeeIds: number[];
 
   constructor(id: string, title: string, ids: number[]) {
     this.id = id;
     this.title = title;
-    this.ids = ids;
+    this.matchingEmployeeIds = ids;
   }
 }
