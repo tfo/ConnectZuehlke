@@ -10,7 +10,7 @@ import {GameService} from './game.service';
 })
 export class GameRestService implements GameService {
 
-  private GAME_URL: '/api/game';
+  private GAME_URL: string = '/api/game';
 
   constructor(private http: HttpClient) {
   }
