@@ -46,7 +46,7 @@ export class GameStateService {
   }
 
   private matchEmployee(answer: Answer, employee: Employee): boolean {
-    return answer.ids.includes(employee.id);
+    return answer.matchingEmployeeIds.includes(employee.id);
   }
 
   private matchSecretEmployee(answer: Answer): boolean {
@@ -60,7 +60,7 @@ export class GameStateService {
   private hideMismatchingEmployeesByAnswer(answer: Answer): void {
     this.employees
       .filter(employee => employee.hidden === false)
-      .filter(employee => answer.ids.includes(employee.id))
+      .filter(employee => answer.matchingEmployeeIds.includes(employee.id))
       .every(employee => employee.hidden = true);
   }
 }

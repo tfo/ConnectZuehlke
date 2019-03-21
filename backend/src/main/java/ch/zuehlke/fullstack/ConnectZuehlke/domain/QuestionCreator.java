@@ -24,8 +24,8 @@ class QuestionCreator {
 
         for (Question question : questions) {
             List<Integer> notMatchingIds = question.getAnswers().stream()
-                    .filter(answer -> !answer.getIds().contains(selectedEmployeeId))
-                    .map(Answer::getIds)
+                    .filter(answer -> !answer.getMatchingEmployeeIds().contains(selectedEmployeeId))
+                    .map(Answer::getMatchingEmployeeIds)
                     .flatMap(Collection::stream)
                     .collect(Collectors.toList());
 
