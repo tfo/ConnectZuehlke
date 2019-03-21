@@ -33,4 +33,8 @@ public class Game {
     public String getId() {
         return id;
     }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
 }
