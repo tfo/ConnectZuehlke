@@ -35,7 +35,6 @@ import {AgmCoreModule} from '@agm/core';
 import {ErrorRequestInterceptor} from './common/error-request-interceptor';
 import {QuestionTileComponent} from './question-tile/question-tile.component';
 import {QuestionsComponent} from './questions/questions.component';
-import {CounterComponent} from './counter/counter.component';
 
 
 // For more icons, please checkout https://fontawesome.com/icons?d=gallery
@@ -53,8 +52,7 @@ library.add(faAngular);
     GameComponent,
     TopbarComponent,
     QuestionTileComponent,
-    QuestionsComponent,
-    CounterComponent
+    QuestionsComponent
   ],
   imports: [
     BrowserModule,
