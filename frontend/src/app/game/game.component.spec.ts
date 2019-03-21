@@ -6,7 +6,6 @@ import {QuestionTileComponent} from '../question-tile/question-tile.component';
 import {MatButtonToggleModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import {QuestionsComponent} from '../questions/questions.component';
-import {GameServiceMock} from '../service/game/game.service-mock';
 
 describe('GameComponent', () => {
   let component: GameComponent;
@@ -23,9 +22,6 @@ describe('GameComponent', () => {
         FontAwesomeModule,
         MatButtonToggleModule,
         MatCardModule
-      ],
-      providers: [
-        {provide: GameServiceMock, useClass: GameServiceMock}
       ]
     }).compileComponents();
   }));
