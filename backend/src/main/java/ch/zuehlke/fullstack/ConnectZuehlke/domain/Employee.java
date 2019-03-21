@@ -15,7 +15,7 @@ public class Employee {
     private final int skillProfileCompleteness;
     private final String entryDate;
     private final Grade grade;
-    private final int gender;
+    private int gender;
     private final String privateAddressCity;
     private final int bankHours;
 
@@ -100,5 +100,10 @@ public class Employee {
 
     public int getBankHours() {
         return bankHours;
+    }
+
+    //21st century
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 }
