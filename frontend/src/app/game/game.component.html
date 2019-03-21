@@ -3,9 +3,11 @@
     Guess the secret Zühlke Employee!
   </h1>
 
+  Hint: {{gameState.secretEmployee.firstName}}
+
   <div class="grid-container-header">
     <div class="grid-header">
-      <counter [count]=gameState.questionCount [title]=questionCounterTitle></counter>
+      <app-counter [count]=gameState.questionCount [title]=questionCounterTitle></app-counter>
       <img *ngIf="!gameState.hasWon" src="assets/silhouette.jpg" alt="An employee silhouette">
       <div *ngIf="gameState.hasWon">
         <img src="/api/employee/{{gameState.secretEmployee.code}}/picture">
@@ -14,7 +16,7 @@
           <li>Role: {{gameState.secretEmployee.code}}</li>
         </ul>
       </div>
-      <counter [count]=gameState.missedQuestionCount [title]=missedGuessesCounterTitle></counter>
+      <app-counter [count]=gameState.missedQuestionCount [title]=missedGuessesCounterTitle></app-counter>
     </div>
   </div>
 </div>
@@ -26,6 +28,7 @@
     <div class="picture-container" *ngFor="let employee of gameState.employees">
       <div class="overlay" *ngIf="employee.hidden"></div>
       <img src="/api/employee/{{employee.code}}/picture" alt="{{employee.firstName}}'s picture">
+      <div>{{employee.firstName}}</div>
     </div>
   </div>
 </div>
