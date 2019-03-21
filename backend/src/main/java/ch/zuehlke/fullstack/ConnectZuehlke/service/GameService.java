@@ -142,7 +142,8 @@ public class GameService {
             "vga",
             "lich",
             "jpro",
-            "ivdi"
+            "ivdi",
+            "sahi"
     );
 
     public Game createGame(int numberOfEmployees) {
