@@ -10,12 +10,12 @@ import {Employee} from "../domain/Employee";
 export class GameComponent implements OnInit {
   secretEmployees: Employee[];
 
-  constructor(gameService: GameServiceMock) {
-    gameService.createNewGame().subscribe(game => {
-      this.secretEmployees = game.employees;
-    });
+  constructor(private gameService: GameServiceMock) {
   }
 
   ngOnInit() {
+    this.gameService.createNewGame().subscribe(game => {
+      this.secretEmployees = game.employees;
+    });
   }
 }
