@@ -1,0 +1,9 @@
+<h2>Ask your questions</h2>
+
+<div class="grid-container">
+  <div class="grid">
+    <div class="grid-item" *ngFor="let question of questions">
+      <app-question-tile [question]="question"></app-question-tile>
+    </div>
+  </div>
+</div>

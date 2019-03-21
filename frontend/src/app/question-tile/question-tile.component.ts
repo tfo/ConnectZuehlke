@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Question} from '../domain/Question';
-import {Answer} from "../domain/Answer";
+import {Answer} from '../domain/Answer';
 
 @Component({
   selector: 'app-question-tile',

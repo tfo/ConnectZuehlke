@@ -17,10 +17,4 @@
 
 <div class="spacer"></div>
 
-<div class="grid-container">
-  <div class="grid">
-    <div class="grid-item" *ngFor="let question of questions">
-      <app-question-tile [question]="question"></app-question-tile>
-    </div>
-  </div>
-</div>
+<app-questions [questions]="questions"></app-questions>
