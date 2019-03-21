@@ -41,6 +41,9 @@ class QuestionCreator {
         questions.add(createIsManagementQuestion());
         questions.add(createSexQuestion());
         questions.add(createFlexpayQuestion());
+        questions.add(createLocationQuestion());
+        questions.add(createEntryDateQuestion());
+        questions.add(createGradeQuestion());
 
         if (!hasUniqueSolution()) {
             //TODO what do we do?
@@ -96,6 +99,55 @@ class QuestionCreator {
         Answer no = new Answer("1","No", notFlexpayerIds);
 
         return new Question("4","Does the person have flexplay?", Arrays.asList(yes, no));
+    }
+
+    private Question createLocationQuestion() {
+        List<Integer> swissIds = employees.stream().filter(employee -> isInSwitzerland(employee.getLocation())).map(Employee::getId).collect(Collectors.toList());
+        Answer swiss = new Answer("0","Yes", swissIds);
+
+        List<Integer> notSwissWorkers = employees.stream().filter(employee -> !isInSwitzerland(employee.getLocation())).map(Employee::getId).collect(Collectors.toList());
+        Answer notSwiss = new Answer("1","No", notSwissWorkers);
+
+        return new Question("5","Does the person work in Switzerland?", Arrays.asList(swiss, notSwiss));
+    }
+
+    private static boolean isInSwitzerland(String location) {
+        return location.equalsIgnoreCase("Schlieren") ||
+                location.equalsIgnoreCase("Bern");
+    }
+
+    private Question createEntryDateQuestion() {
+        List<Integer> oldIds = employees.stream().filter(employee -> worksForLongInZuehlke(employee.getEntryDate())).map(Employee::getId).collect(Collectors.toList());
+        Answer yes = new Answer("0","Before 2017", oldIds);
+
+        List<Integer> youngIds = employees.stream().filter(employee -> !worksForLongInZuehlke(employee.getEntryDate())).map(Employee::getId).collect(Collectors.toList());
+        Answer no = new Answer("1","After 2017", youngIds);
+
+        return new Question("6","Did the join before 2017?", Arrays.asList(yes, no));
+    }
+
+    private static boolean worksForLongInZuehlke(String entryDate) {
+        if (!entryDate.contains("-")) return true;
+
+        String[] splits = entryDate.split("-");
+        Integer year = Integer.valueOf(splits[0]);
+        return year <= 2017;
+    }
+
+    private Question createGradeQuestion() {
+        List<Integer> highGradeIds = employees.stream().filter(employee -> hasHighGrade(employee.getGrade())).map(Employee::getId).collect(Collectors.toList());
+        Answer abc = new Answer("0","A, B or C", highGradeIds);
+
+        List<Integer> lowGradeIds = employees.stream().filter(employee -> !hasHighGrade(employee.getGrade())).map(Employee::getId).collect(Collectors.toList());
+        Answer def = new Answer("1","D, E or F", lowGradeIds);
+
+        return new Question("7","Has the person grade C or higher?", Arrays.asList(abc, def));
+    }
+
+    private static boolean hasHighGrade(String grade) {
+        return  grade.toLowerCase().contains("a") ||
+                grade.toLowerCase().contains("b") ||
+                grade.toLowerCase().contains("c");
     }
 
     List<Question> getQuestions() {
