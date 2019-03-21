@@ -12,42 +12,43 @@
   height: 35px;
 }
 
+$picture-size: 160px;
+
 .grid-container {
   text-align: center;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: $picture-size*4;
 }
 
 .grid {
   display: grid;
   grid-template-rows:50% 50%;
-  grid-template-columns:25% 25% 25% 25%;
+  grid-template-columns: repeat(4, $picture-size);
   grid-gap: 0;
   margin: auto;
 
   img {
-    width: 150px;
+    width: $picture-size;
     display: block;
   }
   .picture-container {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: $picture-size;
+    height: $picture-size;
     margin: 0;
     padding: 0;
   }
 
-  .picture-container:before {
-    content: "";
+  .overlay {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    opacity: 0;
     background-color: gray;
     background-size: 100% 100%;
-  }
-  .picture-container:hover:before {
     opacity: 0.75;
   }
 }
