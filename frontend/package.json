@@ -8,7 +8,7 @@
     "dist": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "ci-test": "ng test --watch=false --browsers=ChromeHeadless",
+    "ci-test": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {
