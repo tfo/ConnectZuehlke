@@ -19,7 +19,7 @@
 
 .grid {
   display: grid;
-  grid-template-rows:auto 50% 50% auto;
+  grid-template-rows:50% 50%;
   grid-template-columns:25% 25% 25% 25%;
   grid-gap: 0;
   margin: auto;
@@ -29,5 +29,25 @@
     display: block;
   }
   .picture-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .picture-container:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background-color: gray;
+    background-size: 100% 100%;
+  }
+  .picture-container:hover:before {
+    opacity: 0.75;
   }
 }
