@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {Game} from '../../domain/Game';
 import {catchError} from 'rxjs/operators';
 import {GameService} from './game.service';
+import {HttpParamsOptions} from "@angular/common/http/src/params";
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,18 @@ import {GameService} from './game.service';
 export class GameRestService implements GameService {
 
   private GAME_URL: string = '/api/game';
+  private GAME_SIZE: number = 15;
 
   constructor(private http: HttpClient) {
   }
 
   public createNewGame(): Observable<Game> {
+    const httpOptions = {
+      params: new HttpParams().set('numberOfEmployees', `${this.GAME_SIZE}`)
+    };
+
     return this.http
-      .get<Game>(this.GAME_URL)
+      .get<Game>(this.GAME_URL, httpOptions)
       .pipe(catchError(this.handleError('createNewGame', null)));
   }
 

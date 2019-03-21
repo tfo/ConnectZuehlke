@@ -6,7 +6,7 @@ import {GameRestService} from './game.service-rest';
 import {GameService} from './game.service';
 import {GAME} from './game.service-mock';
 
-describe('GameService', () => {
+describe('GameRestService', () => {
   let httpMock: HttpTestingController;
   let service: GameRestService;
 
@@ -36,7 +36,7 @@ describe('GameService', () => {
       expect(game).toEqual(expectedGame);
     });
 
-    const request = httpMock.expectOne('/api/game');
+    const request = httpMock.expectOne('/api/game?numberOfEmployees=15');
     expect(request.request.method).toBe('GET');
     request.flush(expectedGame);
   });
