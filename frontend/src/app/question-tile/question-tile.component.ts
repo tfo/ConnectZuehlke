@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Question} from '../domain/Question';
 import {Answer} from '../domain/Answer';
+import {GameStateService} from '../service/game-state/game-state.service';
 
 @Component({
   selector: 'app-question-tile',
@@ -11,12 +12,13 @@ export class QuestionTileComponent implements OnInit {
 
   @Input() question: Question;
 
-  constructor() { }
+  constructor(private gameState: GameStateService) { }
 
   ngOnInit() {
   }
 
   public selectAnswer(answer: Answer): void {
-    console.log(`Answer: ${answer.title}`);
+    let result = this.gameState.guess(answer);
+    console.log(`Guess answer: ${answer.title} > ${result}`);
   }
 }
