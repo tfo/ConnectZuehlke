@@ -1,6 +1,8 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import java.text.MessageFormat;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.LocationQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.QuestionFactory;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -11,13 +13,22 @@ class QuestionCreator {
     private final List<Employee> employees;
     private final Employee selectedEmployee;
 
+    private final Collection<QuestionFactory> questionFactories;
+
     QuestionCreator(List<Employee> employees, Employee selectedEmployee) {
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
+
+        this.questionFactories = Collections.singletonList(
+                new LocationQuestionFactory()
+        );
     }
 
     List<Question> create() {
-        List<Question> questions = new ArrayList<>();
+        List<Question> questions = this.questionFactories
+                .stream()
+                .map(questionFactory -> questionFactory.create(employees))
+                .collect(Collectors.toList());
 
         questions.add(createFullTimeQuestion());
         questions.add(createBankHoursQuestion());
@@ -25,7 +36,6 @@ class QuestionCreator {
         questions.add(createIsManagementQuestion());
         questions.add(createSexQuestion());
         questions.add(createFlexPayQuestion());
-        //questions.add(createLocationQuestion());
         questions.add(createEntryDateQuestion());
         questions.add(createGradeQuestion());
 
@@ -133,29 +143,6 @@ class QuestionCreator {
         ));
     }
 
-    private Question createLocationQuestion() {
-        Map<Country, Set<Integer>> employeePerCountry = new HashMap<>();
-        for (Employee employee : employees) {
-            Optional<Country> optional = Country.forLocation(employee.getLocation());
-            if (optional.isPresent()) {
-                employeePerCountry
-                        .computeIfAbsent(optional.get(), key -> new HashSet<>())
-                        .add(employee.getId());
-            }
-        }
-
-        List<Answer> answers = new ArrayList<>();
-        for (Map.Entry<Country, Set<Integer>> entry : employeePerCountry.entrySet()) {
-            Country country = entry.getKey();
-            Set<Integer> matchingEmployeeIds = entry.getValue();
-
-            answers.add(new Answer(generateId(), country.getName(), matchingEmployeeIds,
-                    MessageFormat.format("The secret person works in {0}.", country.getName())));
-        }
-
-        return new Question(generateId(), "The person works in ...?", answers);
-    }
-
     private Question createEntryDateQuestion() {
         Set<Integer> oldIds = employees.stream()
                 .filter(employee -> worksForLongInZuehlke(employee.getEntryDate()))
@@ -200,7 +187,7 @@ class QuestionCreator {
         return new Question(generateId(), "Which grade has the person?", Arrays.asList(
                 new Answer(generateId(), "Management", managementMatchingEmployeeIds, "The secret person works in the management (Grade A)."),
                 new Answer(generateId(), "Lead", leadMatchingEmployeeIds, "The secret person works as lead (Grade B, C)."),
-                new Answer(generateId(), "Normal", normalMatchingEmployeeIds, "The secret person works as employee (Grade D - G).")
+                new Answer(generateId(), "Normal", normalMatchingEmployeeIds, "The secret person works as normal employee (Grade D - G).")
         ));
     }
 

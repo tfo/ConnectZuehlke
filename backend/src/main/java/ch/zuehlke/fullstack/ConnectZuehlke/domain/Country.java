@@ -8,10 +8,11 @@ public enum Country {
     ASIA("Asia", "Hong Kong", "Singapur", "Singapore"),
     AUSTRIA("Austria","Wien"),
     BULGARIA("Bulgaria","Sofia"),
-    GERMANY("Germany","Eschborn", "München", "Hamburg", "Stuttgart", "Hannover"),
+    GERMANY("Germany","Eschborn", "München", "Muenchen", "Hamburg", "Stuttgart", "Hannover"),
     SERBIA("Serbia", "Belgrade", "New Belgrade"),
     SWITZERLAND("Switzerland", "Bern", "Schlieren"),
-    UNITED_KINGDOM("United Kingdom", "London", "Manchester");
+    UNITED_KINGDOM("United Kingdom", "London", "Manchester"),
+    OTHERS("Others");
 
     private final String name;
     private final List<String> locations;

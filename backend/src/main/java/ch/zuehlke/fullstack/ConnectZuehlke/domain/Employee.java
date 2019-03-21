@@ -58,6 +58,11 @@ public class Employee {
         return location;
     }
 
+    public Country getCountry() {
+        return Country.forLocation(location)
+                .orElse(Country.OTHERS);
+    }
+
     public int getPercentage() {
         return percentage;
     }

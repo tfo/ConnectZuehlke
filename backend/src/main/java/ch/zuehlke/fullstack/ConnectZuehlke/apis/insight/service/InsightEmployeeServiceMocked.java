@@ -17,9 +17,9 @@ import static java.util.Arrays.asList;
 public class InsightEmployeeServiceMocked implements InsightEmployeeService {
 
     public static final List<Employee> EMPLOYEES = asList(
-            new EmployeeBuilder().setFirstName("Klaus").setLastName("Mustermann").setId(1).setLocation("kmu").createEmployee(),
-            new EmployeeBuilder().setFirstName("Magda").setLastName("Müller").setId(2).setLocation("mmu").createEmployee(),
-            new EmployeeBuilder().setFirstName("Kurt").setLastName("Peters").setId(3).setLocation("kpe").createEmployee()
+            new EmployeeBuilder().setFirstName("Klaus").setLastName("Mustermann").setId(1).setLocation("kmu").build(),
+            new EmployeeBuilder().setFirstName("Magda").setLastName("Müller").setId(2).setLocation("mmu").build(),
+            new EmployeeBuilder().setFirstName("Kurt").setLastName("Peters").setId(3).setLocation("kpe").build()
     );
 
     public List<Employee> getEmployees() {

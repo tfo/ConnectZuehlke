@@ -21,8 +21,8 @@ public class GameTest {
 
     @Test
     public void hasUniqueSolution_withMatchingEmployees_noUniqueSolution() {
-        Employee employee = new EmployeeBuilder().setId(0).setGrade("A").createEmployee();
-        Employee clone = new EmployeeBuilder().setId(1).setGrade("A").createEmployee();
+        Employee employee = new EmployeeBuilder().setId(0).setGrade("A").build();
+        Employee clone = new EmployeeBuilder().setId(1).setGrade("A").build();
 
         Game game = new Game("0", Arrays.asList(employee, clone), employee);
 

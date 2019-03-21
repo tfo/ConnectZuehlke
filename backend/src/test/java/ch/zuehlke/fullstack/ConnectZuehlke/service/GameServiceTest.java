@@ -6,6 +6,7 @@ import ch.zuehlke.fullstack.ConnectZuehlke.domain.EmployeeBuilder;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(100)
-                    .createEmployee(),
+                    .build(),
             new EmployeeBuilder()
                     .setFirstName("Martha")
                     .setLastName("Breitenbacher")
@@ -51,7 +52,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(90)
-                    .createEmployee(),
+                    .build(),
             new EmployeeBuilder()
                     .setFirstName("Mirco")
                     .setLastName("Biner")
@@ -69,7 +70,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(95)
-                    .createEmployee(),
+                    .build(),
             new EmployeeBuilder()
                     .setFirstName("Francisco")
                     .setLastName("Perez")
@@ -87,7 +88,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(100)
-                    .createEmployee(),
+                    .build(),
             new EmployeeBuilder()
                     .setFirstName("Hendrik")
                     .setLastName("Mustermann")
@@ -105,7 +106,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(90)
-                    .createEmployee(),
+                    .build(),
             new EmployeeBuilder()
                     .setFirstName("Gerda")
                     .setLastName("Lendl")
@@ -123,7 +124,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(60)
-                    .createEmployee(),
+                    .build(),
             new EmployeeBuilder()
                     .setFirstName("Ringo")
                     .setLastName("Starr")
@@ -141,7 +142,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(100)
-                    .createEmployee(),
+                    .build(),
             new EmployeeBuilder()
                     .setFirstName("Markus")
                     .setLastName("Held")
@@ -159,7 +160,7 @@ public class GameServiceTest {
                     .setExperience(0)
                     .setPrivateAddressCity("")
                     .setPercentage(100)
-                    .createEmployee()
+                    .build()
     );
 
     private GameService service;
@@ -169,7 +170,7 @@ public class GameServiceTest {
     public final void setUp() {
         this.employeeService = mock(InsightEmployeeService.class);
 
-        this.service = new GameService(employeeService);
+        this.service = new GameService(employeeService, mock(RestTemplateBuilder.class));
     }
 
     @Test

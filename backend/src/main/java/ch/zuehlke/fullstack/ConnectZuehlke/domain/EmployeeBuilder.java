@@ -98,7 +98,7 @@ public class EmployeeBuilder {
         return this;
     }
 
-    public Employee createEmployee() {
+    public Employee build() {
         return new Employee(firstName, lastName, id, code, location, percentage, isManagement, isPassionated, flexpay, experience, skillProfileCompleteness, entryDate, grade, gender, privateAddressCity, bankHours);
     }
 }

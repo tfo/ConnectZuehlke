@@ -39,7 +39,7 @@ public class EmployeeRestControllerTest {
 
     @Test
     public void testGetUsers() throws Exception {
-        when(employeeService.getEmployees()).thenReturn(Collections.singletonList(new EmployeeBuilder().setFirstName("Max").setLastName("Mustermann").setCode("mmu").setId(1).setLocation("Eschborn").createEmployee()));
+        when(employeeService.getEmployees()).thenReturn(Collections.singletonList(new EmployeeBuilder().setFirstName("Max").setLastName("Mustermann").setCode("mmu").setId(1).setLocation("Eschborn").build()));
         mockMvc.perform(get("/api/employees"))
                 .andExpect(content().json("[\n" +
                         "  {\n" +
