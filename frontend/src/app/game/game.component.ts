@@ -9,7 +9,7 @@ import {GameRestService} from "../service/game/game.service-rest";
 })
 export class GameComponent implements OnInit {
 
-  constructor(private gameService: GameRestService, private gameState: GameStateService) {
+  constructor(private gameService: GameRestService, public gameState: GameStateService) {
   }
 
   ngOnInit() {
