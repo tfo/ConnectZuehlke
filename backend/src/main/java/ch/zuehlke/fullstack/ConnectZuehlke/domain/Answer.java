@@ -5,12 +5,18 @@ import java.util.Objects;
 
 public class Answer {
 
+    private final String id;
     private final String title;
     private final List<Integer> ids;
 
-    public Answer(String title, List<Integer> ids) {
+    public Answer(String id, String title, List<Integer> ids) {
+        this.id = id;
         this.title = title;
         this.ids = ids;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -26,12 +32,13 @@ public class Answer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Answer answer = (Answer) o;
-        return Objects.equals(title, answer.title) &&
+        return Objects.equals(id, answer.id) &&
+                Objects.equals(title, answer.title) &&
                 Objects.equals(ids, answer.ids);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, ids);
+        return Objects.hash(id);
     }
 }
