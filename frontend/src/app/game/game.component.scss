@@ -1,13 +1,27 @@
-.game-headline {
+.game-title {
   text-align: center;
   img {
-    height: 10em;
-    display: inline-block;
+    display:block;
+    margin:auto;
+    height: 220px;
+    width: auto;
   }
 }
 
 .container {
   display: grid;
-  grid-template-rows:50% 50%;
+  grid-template-rows:auto 50% 50% auto;
   grid-template-columns:25% 25% 25% 25%;
+  grid-gap: 0;
+  margin-top: 50px;
+
+  img {
+    z-index: -1;
+    position: relative;
+    width: 175px;
+    display: block;
+  }
+  .picture-container {
+    float: left;
+  }
 }

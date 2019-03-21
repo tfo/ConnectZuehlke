@@ -1,20 +1,18 @@
-<div class="game-headline">
+<div class="game-title">
   <h1>
     Guess the secret Zühlke Employee!
   </h1>
-  <div class="headline">
-    <img src="assets/silhouette.jpg" alt="An employee silhouette">
+  <img src="assets/silhouette.jpg" alt="An employee silhouette">
+</div>
 
-    <div class="container">
+<div class="container">
+  <div class="grid-item picture-container" *ngFor="let secretEmployee of secretEmployees">
+    <img src="assets/random_pictures/{{secretEmployee.pictureId}}.jpg" alt="{{secretEmployee.firstName}}'s picture">
+  </div>
+</div>
 
-      <div class="grid-item" *ngFor="let secretEmployee of secretEmployees">
-        <img src="assets/random_pictures/{{secretEmployee.pictureId}}.jpg" alt="{{secretEmployee.firstName}}'s picture">
-      </div>
-    </div>
-    <div class="container">
-      <div class="grid-item" *ngFor="let question of questions">
-        <app-question-tile [question]="question"></app-question-tile>
-      </div>
-    </div>
+<div class="container">
+  <div class="grid-item" *ngFor="let question of questions">
+    <app-question-tile [question]="question"></app-question-tile>
   </div>
 </div>
