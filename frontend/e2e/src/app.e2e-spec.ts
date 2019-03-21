@@ -10,25 +10,7 @@ describe('Main App Page', () => {
 
   it('should display welcome message', () => {
     appPage.navigateTo();
-    expect(appPage.getTitleText()).toEqual('Welcome to Zühlke Connect!');
-  });
-
-  it('should show sidebar when clicking on navigation header', () => {
-    appPage.navigateTo();
-    expect(appPage.sidebar().isDisplayed()).toBeFalsy();
-    appPage.toolbar().toggleSidebar();
-    expect(appPage.sidebar().isDisplayed()).toBeTruthy();
-  });
-
-  it('should go to employees list', () => {
-    appPage.navigateTo();
-    appPage.toolbar().toggleSidebar();
-    expect(appPage.sidebar().isDisplayed()).toBeTruthy();
-
-    appPage.sidebar().clickOn('Employees');
-    const employeeListPage = appPage.employeeList();
-
-    expect(employeeListPage.isDisplayed()).toBeTruthy();
+    expect(appPage.getTitleText()).toEqual('Guess the secret Zühlke Employee!');
   });
 
 
