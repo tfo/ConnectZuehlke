@@ -4,7 +4,6 @@ import {Observable, of} from 'rxjs';
 import {Game} from '../../domain/Game';
 import {catchError} from 'rxjs/operators';
 import {GameService} from './game.service';
-import {HttpParamsOptions} from "@angular/common/http/src/params";
 
 @Injectable({
   providedIn: 'root'
