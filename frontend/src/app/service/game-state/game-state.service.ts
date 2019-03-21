@@ -36,10 +36,10 @@ export class GameStateService {
     if (matchSecretEmployee === true) {
       const answers = question.getAllAnswersExcept(answer);
 
-      this.hideMissmatchingEmployeesByAnswers(answers);
+      this.hideMismatchingEmployeesByAnswers(answers);
     } else {
       this.missedQuestionCount++;
-      this.hideMissmatchingEmployees(answer);
+      this.hideMismatchingEmployeesByAnswer(answer);
     }
 
     return matchSecretEmployee;
@@ -53,11 +53,11 @@ export class GameStateService {
     return this.matchEmployee(answer, this.secretEmployee);
   }
 
-  private hideMissmatchingEmployeesByAnswers(answers: Answer[]): void {
-    answers.forEach(answer => this.hideMissmatchingEmployees(answer));
+  private hideMismatchingEmployeesByAnswers(answers: Answer[]): void {
+    answers.forEach(answer => this.hideMismatchingEmployeesByAnswer(answer));
   }
 
-  private hideMissmatchingEmployees(answer: Answer): void {
+  private hideMismatchingEmployeesByAnswer(answer: Answer): void {
     this.employees
       .filter(employee => employee.hidden === false)
       .filter(employee => answer.ids.includes(employee.id))
