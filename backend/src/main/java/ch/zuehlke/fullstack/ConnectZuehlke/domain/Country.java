@@ -1,8 +1,8 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public enum Country {
     ASIA("Asia", "Hong Kong", "Singapur", "Singapore"),
@@ -25,10 +25,9 @@ public enum Country {
         return name;
     }
 
-    public static Country forLocation(String location) {
+    public static Optional<Country> forLocation(String location) {
         return Arrays.stream(Country.values())
                 .filter(country -> country.locations.contains(location))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(MessageFormat.format("Unsupported location ''{0}''!", location)));
+                .findFirst();
     }
 }

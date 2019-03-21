@@ -100,10 +100,12 @@ class QuestionCreator {
     private Question createLocationQuestion() {
         Map<Country, List<Integer>> employeePerCountry = new HashMap<>();
         for (Employee employee : employees) {
-            Country country = Country.forLocation(employee.getLocation());
-            employeePerCountry
-                    .computeIfAbsent(country, key -> new ArrayList<>())
-                    .add(employee.getId());
+            Optional<Country> optional = Country.forLocation(employee.getLocation());
+            if (optional.isPresent()) {
+                employeePerCountry
+                        .computeIfAbsent(optional.get(), key -> new ArrayList<>())
+                        .add(employee.getId());
+            }
         }
 
         List<Answer> answers = new ArrayList<>();
