@@ -1,5 +1,5 @@
-import {Game} from '../domain/Game';
-import {EMPLOYEES} from '../employee.service-mock';
+import {Game} from '../../domain/Game';
+import {EMPLOYEES} from '../employee/employee.service-mock';
 import {GameService} from './game.service';
 import {Observable, of} from 'rxjs';
 

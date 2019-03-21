@@ -1,21 +1,24 @@
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
-import {Employee} from './domain/Employee';
+import {Observable, of} from 'rxjs';
+import {Game} from '../../domain/Game';
+import {catchError} from 'rxjs/operators';
+import {GameService} from './game.service';
 
-@Injectable({providedIn: 'root'})
-export class EmployeeService {
+@Injectable({
+  providedIn: 'root'
+})
+export class GameRestService implements GameService {
+
+  private GAME_URL: string = '/api/game';
 
   constructor(private http: HttpClient) {
   }
 
-  public getAllEmployees(): Observable<Employee[]> {
-
+  public createNewGame(): Observable<Game> {
     return this.http
-      .get<Employee[]>('/api/employees')
-      .pipe(catchError(this.handleError('getAllEmployees', [])));
-
+      .get<Game>(this.GAME_URL)
+      .pipe(catchError(this.handleError('createNewGame', null)));
   }
 
   /**
@@ -38,13 +41,7 @@ export class EmployeeService {
     };
   }
 
-  private log(s: string) {
-    console.log(`${this}: ${s}`);
-  }
-
-  getEmployee(id: string): Observable<Employee> {
-    return this.http
-      .get<Employee>(`/api/employee/${id}`)
-      .pipe(catchError(this.handleError('getEmployee', null)));
+  private log(message: string): void {
+    console.log(`${this}: ${message}`);
   }
 }

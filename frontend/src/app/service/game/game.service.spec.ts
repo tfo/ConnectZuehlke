@@ -1,7 +1,7 @@
 import {TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
-import {Game} from '../domain/Game';
+import {Game} from '../../domain/Game';
 import {GameRestService} from './game.service-rest';
 import {GameService} from './game.service';
 import {GAME} from './game.service-mock';
