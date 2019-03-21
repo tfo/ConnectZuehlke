@@ -36,18 +36,14 @@
     padding: 0;
   }
 
-  .picture-container:before {
-    content: "";
+  .overlay {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    opacity: 0;
     background-color: gray;
     background-size: 100% 100%;
-  }
-  .picture-container:hover:before {
     opacity: 0.75;
   }
 }

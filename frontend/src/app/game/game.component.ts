@@ -24,4 +24,7 @@ export class GameComponent implements OnInit {
     });
   }
 
+  isGrayedOut() {
+    return Math.random() > 0.5;
+  }
 }
