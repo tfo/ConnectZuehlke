@@ -2,7 +2,14 @@
   <h1>
     Guess the secret Zühlke Employee!
   </h1>
-  <img src="assets/silhouette.jpg" alt="An employee silhouette">
+
+  <div class="grid-container-header">
+    <div class="grid-header">
+      <counter [count]=gameState.questionCount [title]=questionCounterTitle></counter>
+      <img src="assets/silhouette.jpg" alt="An employee silhouette">
+      <counter [count]=gameState.missedQuestionCount [title]=missedGuessesCounterTitle></counter>
+    </div>
+  </div>
 </div>
 
 <div class="spacer"></div>

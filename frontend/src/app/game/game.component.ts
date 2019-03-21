@@ -9,6 +9,9 @@ import {GameRestService} from "../service/game/game.service-rest";
 })
 export class GameComponent implements OnInit {
 
+  questionCounterTitle = "Questions: ";
+  missedGuessesCounterTitle = "Missed questions: ";
+
   constructor(private gameService: GameRestService, public gameState: GameStateService) {
   }
 
