@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><mat-card-title>{{question.title}}</mat-card-title></mat-card-title>
+  </mat-card-header>
+  <mat-card-actions>
+    <mat-button-toggle-group name="{{question.id}}">
+      <mat-button-toggle *ngFor="let answer of question.answers"
+        value="{{answer.id}}"
+        (click)="selectAnswer(answer)">
+        {{answer.title}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </mat-card-actions>
+</mat-card>

@@ -17,6 +17,7 @@ import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
+  MatButtonToggleModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -25,12 +26,14 @@ import {
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
 import {NavigationComponent} from './navigation/navigation.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {GameComponent} from './game/game.component';
 import {TopbarComponent} from './navigation/topbar/topbar.component';
 import {AgmCoreModule} from '@agm/core';
 import {ErrorRequestInterceptor} from './common/error-request-interceptor';
+import {QuestionTileComponent} from './question-tile/question-tile.component';
 
 
 // For more icons, please checkout https://fontawesome.com/icons?d=gallery
@@ -46,7 +49,8 @@ library.add(faAngular);
     SearchPipe,
     NavigationComponent,
     GameComponent,
-    TopbarComponent
+    TopbarComponent,
+    QuestionTileComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,8 @@ library.add(faAngular);
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
     MatSelectModule,
     MatIconModule,
     MatSnackBarModule,

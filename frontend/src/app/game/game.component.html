@@ -3,12 +3,17 @@
     Guess the secret Zühlke Employee!
   </h1>
   <div class="headline">
-    <img src="assets/silhouette.jpg">
+    <img src="assets/silhouette.jpg" alt="An employee silhouette">
 
     <div class="container">
 
       <div class="grid-item" *ngFor="let secretEmployee of secretEmployees">
-        <img src="assets/random_pictures/{{secretEmployee.pictureId}}.jpg">
+        <img src="assets/random_pictures/{{secretEmployee.pictureId}}.jpg" alt="{{secretEmployee.firstName}}'s picture">
+      </div>
+    </div>
+    <div class="container">
+      <div class="grid-item" *ngFor="let question of questions">
+        <app-question-tile [question]="question"></app-question-tile>
       </div>
     </div>
   </div>
