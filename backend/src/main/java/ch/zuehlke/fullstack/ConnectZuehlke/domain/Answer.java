@@ -6,19 +6,19 @@ import java.util.Objects;
 public class Answer {
 
     private final String title;
-    private final List<Integer> correspondingIds;
+    private final List<Integer> ids;
 
-    public Answer(String title, List<Integer> correspondingIds) {
+    public Answer(String title, List<Integer> ids) {
         this.title = title;
-        this.correspondingIds = correspondingIds;
+        this.ids = ids;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public List<Integer> getCorrespondingIds() {
-        return correspondingIds;
+    public List<Integer> getIds() {
+        return ids;
     }
 
     @Override
@@ -27,11 +27,11 @@ public class Answer {
         if (o == null || getClass() != o.getClass()) return false;
         Answer answer = (Answer) o;
         return Objects.equals(title, answer.title) &&
-                Objects.equals(correspondingIds, answer.correspondingIds);
+                Objects.equals(ids, answer.ids);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, correspondingIds);
+        return Objects.hash(title, ids);
     }
 }
