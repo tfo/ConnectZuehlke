@@ -8,9 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class GameService {
@@ -41,19 +41,8 @@ public class GameService {
     }
 
     private List<Employee> chooseEmployees(List<Employee> allEmployees, int numberOfEmployees) {
-        Set<Integer> indexes = new HashSet<>(numberOfEmployees);
-        while (indexes.size() < numberOfEmployees) {
-            int index = (int) (Math.random() * allEmployees.size());
-            if (index == allEmployees.size()) {
-                index--;
-            }
-
-            indexes.add(index);
-        }
-
-        return indexes.stream()
-                .map(allEmployees::get)
-                .collect(Collectors.toList());
+        Collections.shuffle(allEmployees);
+        return allEmployees.subList(0, numberOfEmployees);
     }
 
     private Employee selectEmployee(List<Employee> chosenEmployees) {
