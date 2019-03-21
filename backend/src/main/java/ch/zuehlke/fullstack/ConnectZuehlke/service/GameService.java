@@ -30,10 +30,17 @@ public class GameService {
         }
 
         List<Employee> allEmployees = this.employeeService.getEmployees();
-        List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
-        Employee selectedEmployee = selectEmployee(chosenEmployees);
+        Game game = null;
+        boolean foundUniqueSolution = false;
 
-        Game game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee);
+        while (!foundUniqueSolution) {
+            List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
+            Employee selectedEmployee = selectEmployee(chosenEmployees);
+
+            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee);
+
+            foundUniqueSolution = game.hasUniqueSolution();
+        }
 
         LOGGER.info("Created a new game '{}' with '{}' employees.", game.getId(), numberOfEmployees);
 

@@ -1,6 +1,9 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -14,6 +17,25 @@ public class Game {
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
         this.questions = new QuestionCreator(employees, selectedEmployee).getQuestions();
+    }
+
+    public boolean hasUniqueSolution() {
+        Set<Integer> idsMatchingSelectedEmployee = employees.stream()
+                .map(Employee::getId)
+                .collect(Collectors.toSet());
+        Integer selectedEmployeeId = selectedEmployee.getId();
+
+        for (Question question : questions) {
+            List<Integer> notMatchingIds = question.getAnswers().stream()
+                    .filter(answer -> !answer.getMatchingEmployeeIds().contains(selectedEmployeeId))
+                    .map(Answer::getMatchingEmployeeIds)
+                    .flatMap(Collection::stream)
+                    .collect(Collectors.toList());
+
+            idsMatchingSelectedEmployee.removeAll(notMatchingIds);
+        }
+
+        return idsMatchingSelectedEmployee.size() == 1;
     }
 
     public Employee getSelectedEmployee() {

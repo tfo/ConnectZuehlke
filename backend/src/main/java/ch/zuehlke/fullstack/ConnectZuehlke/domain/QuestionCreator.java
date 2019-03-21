@@ -1,6 +1,8 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 class QuestionCreator {
@@ -16,25 +18,6 @@ class QuestionCreator {
         addQuestions();
     }
 
-    public boolean hasUniqueSolution() {
-        Set<Integer> idsMatchingSelectedEmployee = employees.stream()
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-        Integer selectedEmployeeId = selectedEmployee.getId();
-
-        for (Question question : questions) {
-            List<Integer> notMatchingIds = question.getAnswers().stream()
-                    .filter(answer -> !answer.getMatchingEmployeeIds().contains(selectedEmployeeId))
-                    .map(Answer::getMatchingEmployeeIds)
-                    .flatMap(Collection::stream)
-                    .collect(Collectors.toList());
-
-            idsMatchingSelectedEmployee.removeAll(notMatchingIds);
-        }
-
-        return idsMatchingSelectedEmployee.size() == 1;
-    }
-
     private void addQuestions() {
         questions.add(createBankHoursQuestion());
         questions.add(createHasSkillProfileCompletedQuestion());
@@ -44,11 +27,6 @@ class QuestionCreator {
         questions.add(createLocationQuestion());
         questions.add(createEntryDateQuestion());
         questions.add(createGradeQuestion());
-
-        if (!hasUniqueSolution()) {
-            //TODO what do we do?
-            System.out.println("Not a unique solution!");
-        }
     }
 
     private Question createBankHoursQuestion() {
