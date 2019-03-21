@@ -3,6 +3,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {QuestionTileComponent} from './question-tile.component';
 import {MatButtonToggleModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
+import {Question} from '../domain/Question';
+import {Answer} from '../domain/Answer';
 
 describe('QuestionTileComponent', () => {
   let component: QuestionTileComponent;
@@ -24,10 +26,10 @@ describe('QuestionTileComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QuestionTileComponent);
     component = fixture.componentInstance;
-    component.question = {id: 'q1', title: 'What is your question?', answers: [
-        {id: 'a1', title: 'AnswerDto 1', matchingEmployeeIds: []},
-        {id: 'a2', title: 'AnswerDto 2', matchingEmployeeIds: []}
-      ]};
+    component.question = new Question('q1', 'What is your question?', [
+        new Answer('a1', 'Answer 1', [], ''),
+        new Answer('a2', 'Answer 2', [], '')
+      ]);
     fixture.detectChanges();
   });
 
