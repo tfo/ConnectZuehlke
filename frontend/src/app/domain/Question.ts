@@ -17,6 +17,10 @@ export class Question {
     return this.answers.filter(value => value.id !== answer.id);
   }
 
+  public getAnswerForEmployeeId(employeeId: number): Answer {
+    return this.answers.find(answer => answer.matchingEmployeeIds.includes(employeeId));
+  }
+
   public setAnswered(): void {
     this.answered = true;
   }

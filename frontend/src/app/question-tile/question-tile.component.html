@@ -1,18 +1,23 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      <fa-icon *ngIf="answerResult" [icon]="answerResult"></fa-icon>
-      {{question.title}}
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-actions>
-    <mat-button-toggle-group name="{{question.id}}" [disabled]="question.answered">
-      <mat-button-toggle *ngFor="let answer of question.answers"
-        value="{{answer.id}}"
-        (click)="selectAnswer(question, answer)"
-        [disabled]="question.answered">
-        {{answer.title}}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-  </mat-card-actions>
+  <div *ngIf="!answerResult">
+    <mat-card-header>
+      <mat-card-title>
+        {{question.title}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <mat-button-toggle-group name="{{question.id}}" [disabled]="question.answered">
+        <mat-button-toggle *ngFor="let answer of question.answers"
+          value="{{answer.id}}"
+          (click)="selectAnswer(question, answer)"
+          [disabled]="question.answered">
+          {{answer.title}}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </mat-card-actions>
+  </div>
+  <div *ngIf="answerResult">
+    <fa-icon class="color-{{answerResult.color}}" [icon]="answerResult.icon"></fa-icon>
+    {{answerResult.text}}
+  </div>
 </mat-card>

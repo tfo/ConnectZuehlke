@@ -30,6 +30,10 @@ export class GameStateService {
     this.missedQuestionCount = 0;
   }
 
+  public getCorrectAnswerForSecretEmployee(question: Question): Answer {
+    return question.getAnswerForEmployeeId(this.secretEmployee.id);
+  }
+
   public guess(question: Question, answer: Answer): boolean {
     question.setAnswered();
 

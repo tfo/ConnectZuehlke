@@ -27,12 +27,22 @@ export class QuestionTileComponent implements OnInit {
       return;
     }
 
-    const result = this.gameState.guess(question, answer);
+    const answerCorrect = this.gameState.guess(question, answer);
 
-    if (result === true) {
-      this.answerResult = faCheckCircle;
+    if (answerCorrect === true) {
+      this.answerResult = {
+        color: 'green',
+        icon: faCheckCircle,
+        text: `Your guess was correct. ${answer.fact}`
+      };
     } else {
-      this.answerResult = faTimesCircle;
+      const correctAnswer = this.gameState.getCorrectAnswerForSecretEmployee(question);
+
+      this.answerResult = {
+        color: 'red',
+        icon: faTimesCircle,
+        text: `Your guess was wrong. ${correctAnswer.fact}`
+      };
     }
   }
 }
