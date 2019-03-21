@@ -4,7 +4,7 @@ import {Employee} from '../../domain/Employee';
 export class EmployeeDtoMapper {
 
   public static mapFromDto(dto: EmployeeDto): Employee {
-    return new Employee(dto.firstName, dto.lastName, dto.id, dto.code);
+    return new Employee(dto.firstName, dto.lastName, dto.id, dto.code, dto.location);
   }
 
   public static mapFromDtos(employeeDtos: EmployeeDto[]): Employee[] {

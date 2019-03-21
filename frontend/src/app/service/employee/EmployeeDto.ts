@@ -3,4 +3,5 @@ export interface EmployeeDto {
   lastName: string;
   id: number;
   code: string;
+  location: string;
 }
