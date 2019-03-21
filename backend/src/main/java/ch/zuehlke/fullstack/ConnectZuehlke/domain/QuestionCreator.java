@@ -7,16 +7,15 @@ class QuestionCreator {
 
     private final List<Employee> employees;
     private final Employee selectedEmployee;
-    private final List<Question> questions;
 
     QuestionCreator(List<Employee> employees, Employee selectedEmployee) {
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
-        this.questions = new ArrayList<>();
-        addQuestions();
     }
 
-    private void addQuestions() {
+    List<Question> create() {
+        List<Question> questions = new ArrayList<>();
+
         questions.add(createBankHoursQuestion());
         questions.add(createHasSkillProfileCompletedQuestion());
         questions.add(createIsManagementQuestion());
@@ -25,6 +24,8 @@ class QuestionCreator {
         questions.add(createLocationQuestion());
         questions.add(createEntryDateQuestion());
         questions.add(createGradeQuestion());
+
+        return questions;
     }
 
     private Question createBankHoursQuestion() {
@@ -134,9 +135,5 @@ class QuestionCreator {
         return  grade.toLowerCase().contains("a") ||
                 grade.toLowerCase().contains("b") ||
                 grade.toLowerCase().contains("c");
-    }
-
-    List<Question> getQuestions() {
-        return questions;
     }
 }
