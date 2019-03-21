@@ -1,0 +1,31 @@
+package ch.zuehlke.fullstack.ConnectZuehlke.domain;
+
+import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static ch.zuehlke.fullstack.ConnectZuehlke.service.GameServiceTest.EMPLOYEES;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+public class QuestionCreatorTest {
+
+    @Test
+    public void hasUniqueSolution_withDefaultEmployees_success() {
+        List<Employee> employeeList = EMPLOYEES;
+        QuestionCreator questionCreator = new QuestionCreator(employeeList, employeeList.get(0));
+
+        assertTrue(questionCreator.hasUniqueSolution());
+    }
+
+    @Test
+    public void hasUniqueSolution_withMatchingEmployees_noUniqueSolution() {
+        Employee employee = new EmployeeBuilder().setId(0).createEmployee();
+        Employee clone = new EmployeeBuilder().setId(1).createEmployee();
+
+        QuestionCreator questionCreator = new QuestionCreator(Arrays.asList(employee, clone), employee);
+
+        assertFalse(questionCreator.hasUniqueSolution());
+    }
+}

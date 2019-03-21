@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 
 public class GameServiceTest {
 
-    private static final List<Employee> EMPLOYEES = Arrays.asList(
+    public static final List<Employee> EMPLOYEES = Arrays.asList(
             new EmployeeBuilder()
                     .setFirstName("Linda")
                     .setLastName("Roggenmoser")

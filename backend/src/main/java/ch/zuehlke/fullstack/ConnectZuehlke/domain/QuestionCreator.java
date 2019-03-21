@@ -16,7 +16,7 @@ class QuestionCreator {
         addQuestions();
     }
 
-    private boolean hasUniqueSolution() {
+    public boolean hasUniqueSolution() {
         Set<Integer> idsMatchingSelectedEmployee = employees.stream()
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
