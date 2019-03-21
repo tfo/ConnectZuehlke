@@ -14,7 +14,7 @@ export class Question {
   }
 
   public getAllAnswersExcept(answer: Answer): Answer[] {
-    return this.answers.filter(value => value.id !== answer.id)
+    return this.answers.filter(value => value.id !== answer.id);
   }
 
   public setAnswered(): void {
