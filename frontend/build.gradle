@@ -14,13 +14,6 @@ task test(type: NpmTask) {
   args = ['run', 'ci-test']
 }
 
-task e2e(type: NpmTask) {
-  group "Frontend"
-  description "Executes the E2E Test with the backend profile 'ci' in headless chrome"
-
-  args = ['run', 'ci-e2e']
-}
-
 task lint(dependsOn: npm_run_lint) {
   group "Frontend"
   description "Executes linting of the frontend code"

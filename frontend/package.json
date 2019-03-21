@@ -8,10 +8,7 @@
     "dist": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "e2e-without-server": "ng e2e --dev-server-target",
-    "ci-test": "ng test --watch=false --browsers=ChromeHeadless",
-    "ci-e2e": "ng e2e --dev-server-target --protractor-config e2e/protractor-ci.conf.js"
+    "ci-test": "ng test --watch=false --browsers=ChromeHeadless"
   },
   "private": true,
   "dependencies": {

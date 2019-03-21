@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {GameServiceMock} from '../service/game/game.service-mock';
 import {GameStateService} from '../service/game-state/game-state.service';
+import {GameRestService} from "../service/game/game.service-rest";
 
 @Component({
   selector: 'app-game',
@@ -9,7 +9,7 @@ import {GameStateService} from '../service/game-state/game-state.service';
 })
 export class GameComponent implements OnInit {
 
-  constructor(private gameService: GameServiceMock, private gameState: GameStateService) {
+  constructor(private gameService: GameRestService, private gameState: GameStateService) {
   }
 
   ngOnInit() {
