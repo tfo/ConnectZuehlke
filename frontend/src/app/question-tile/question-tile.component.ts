@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {GameStateService} from '../service/game-state/game-state.service';
 import {Question} from '../domain/Question';
 import {Answer} from '../domain/Answer';
-import {GameStateService} from '../service/game-state/game-state.service';
 
 @Component({
   selector: 'app-question-tile',

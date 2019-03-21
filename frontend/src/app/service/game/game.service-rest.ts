@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
-import {Game} from '../../domain/Game';
-import {catchError} from 'rxjs/operators';
+import {GameDto} from './GameDto';
+import {catchError, map} from 'rxjs/operators';
 import {GameService} from './game.service';
+import {Game} from '../../domain/Game';
+import {GameDtoMapper} from './GameDtoMapper';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +24,11 @@ export class GameRestService implements GameService {
     };
 
     return this.http
-      .get<Game>(this.GAME_URL, httpOptions)
-      .pipe(catchError(this.handleError('createNewGame', null)));
+      .get<GameDto>(this.GAME_URL, httpOptions)
+      .pipe(
+        catchError(this.handleError('createNewGame', null)),
+        map(gameDto => GameDtoMapper.mapFromDto(gameDto))
+      );
   }
 
   /**

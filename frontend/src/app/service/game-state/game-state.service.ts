@@ -1,8 +1,8 @@
-import {Game} from "../../domain/Game";
-import {Employee} from "../../domain/Employee";
-import {Question} from "../../domain/Question";
-import {Injectable} from "@angular/core";
-import {Answer} from "../../domain/Answer";
+import {Injectable} from '@angular/core';
+import {Employee} from '../../domain/Employee';
+import {Game} from '../../domain/Game';
+import {Question} from '../../domain/Question';
+import {Answer} from '../../domain/Answer';
 
 @Injectable({
   providedIn: 'root'

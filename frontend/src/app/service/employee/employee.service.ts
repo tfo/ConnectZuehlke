@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
+import {EmployeeDto} from './EmployeeDto';
 import {Employee} from '../../domain/Employee';
+import {EmployeeDtoMapper} from "./EmployeeDtoMapper";
 
 @Injectable({providedIn: 'root'})
 export class EmployeeService {
@@ -11,11 +13,21 @@ export class EmployeeService {
   }
 
   public getAllEmployees(): Observable<Employee[]> {
-
     return this.http
-      .get<Employee[]>('/api/employees')
-      .pipe(catchError(this.handleError('getAllEmployees', [])));
+      .get<EmployeeDto[]>('/api/employees')
+      .pipe(
+        catchError(this.handleError('getAllEmployees', [])),
+        map(employees => EmployeeDtoMapper.mapFromDtos(employees))
+      );
+  }
 
+  public getEmployee(id: string): Observable<Employee> {
+    return this.http
+      .get<EmployeeDto>(`/api/employee/${id}`)
+      .pipe(
+        catchError(this.handleError('getEmployee', null)),
+        map(employee => EmployeeDtoMapper.mapFromDto(employee))
+      );
   }
 
   /**
@@ -38,13 +50,7 @@ export class EmployeeService {
     };
   }
 
-  private log(s: string) {
+  private log(s: string): void {
     console.log(`${this}: ${s}`);
-  }
-
-  getEmployee(id: string): Observable<Employee> {
-    return this.http
-      .get<Employee>(`/api/employee/${id}`)
-      .pipe(catchError(this.handleError('getEmployee', null)));
   }
 }

@@ -25,8 +25,8 @@ describe('QuestionTileComponent', () => {
     fixture = TestBed.createComponent(QuestionTileComponent);
     component = fixture.componentInstance;
     component.question = {id: 'q1', title: 'What is your question?', answers: [
-        {id: 'a1', title: 'Answer 1', ids: []},
-        {id: 'a2', title: 'Answer 2', ids: []}
+        {id: 'a1', title: 'AnswerDto 1', ids: []},
+        {id: 'a2', title: 'AnswerDto 2', ids: []}
       ]};
     fixture.detectChanges();
   });

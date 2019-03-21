@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {GameServiceMock} from '../service/game/game.service-mock';
-import {Employee} from '../domain/Employee';
-import {Question} from '../domain/Question';
 import {GameStateService} from '../service/game-state/game-state.service';
+import {Question} from '../domain/Question';
+import {Employee} from '../domain/Employee';
 
 @Component({
   selector: 'app-game',
