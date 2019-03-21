@@ -76,7 +76,7 @@ class QuestionCreator {
         List<Integer> notFlexpayerIds = employees.stream().filter(employee -> !employee.isFlexpay()).map(Employee::getId).collect(Collectors.toList());
         Answer no = new Answer("1","No", notFlexpayerIds);
 
-        return new Question("4","Does the person have flexplay?", Arrays.asList(yes, no));
+        return new Question("4","Does the person have flexpay?", Arrays.asList(yes, no));
     }
 
     private Question createLocationQuestion() {
