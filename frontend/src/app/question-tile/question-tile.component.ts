@@ -1,7 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GameStateService} from '../service/game-state/game-state.service';
+
+import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
 import {Question} from '../domain/Question';
 import {Answer} from '../domain/Answer';
+import {GameStateService} from '../service/game-state/game-state.service';
 
 @Component({
   selector: 'app-question-tile',
@@ -11,6 +14,8 @@ import {Answer} from '../domain/Answer';
 export class QuestionTileComponent implements OnInit {
   @Input() question: Question;
 
+  answerResult;
+
   constructor(private gameState: GameStateService) {
   }
 
@@ -19,6 +24,11 @@ export class QuestionTileComponent implements OnInit {
 
   public selectAnswer(answer: Answer): void {
     const result = this.gameState.guess(answer);
-    console.log(`Guess answer: ${answer.title} > ${result}`);
+
+    if (result === true) {
+      this.answerResult = faCheckCircle;
+    } else {
+      this.answerResult = faTimesCircle;
+    }
   }
 }
