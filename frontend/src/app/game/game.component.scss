@@ -8,20 +8,26 @@
   }
 }
 
-.container {
+.spacer {
+  height: 35px;
+}
+
+.grid-container {
+  text-align: center;
+  margin: auto;
+}
+
+.grid {
   display: grid;
   grid-template-rows:auto 50% 50% auto;
   grid-template-columns:25% 25% 25% 25%;
   grid-gap: 0;
-  margin-top: 50px;
+  margin: auto;
 
   img {
-    z-index: -1;
-    position: relative;
-    width: 175px;
+    width: 150px;
     display: block;
   }
   .picture-container {
-    float: left;
   }
 }

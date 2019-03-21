@@ -5,14 +5,22 @@
   <img src="assets/silhouette.jpg" alt="An employee silhouette">
 </div>
 
-<div class="container">
-  <div class="grid-item picture-container" *ngFor="let secretEmployee of secretEmployees">
-    <img src="assets/random_pictures/{{secretEmployee.pictureId}}.jpg" alt="{{secretEmployee.firstName}}'s picture">
+<div class="spacer"></div>
+
+<div class="grid-container">
+  <div class="grid">
+    <div class="grid-item picture-container" *ngFor="let secretEmployee of secretEmployees">
+      <img src="assets/random_pictures/{{secretEmployee.pictureId}}.jpg" alt="{{secretEmployee.firstName}}'s picture">
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <div class="grid-item" *ngFor="let question of questions">
-    <app-question-tile [question]="question"></app-question-tile>
+<div class="spacer"></div>
+
+<div class="grid-container">
+  <div class="grid">
+    <div class="grid-item" *ngFor="let question of questions">
+      <app-question-tile [question]="question"></app-question-tile>
+    </div>
   </div>
 </div>
