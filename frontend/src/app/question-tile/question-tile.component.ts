@@ -9,16 +9,16 @@ import {Answer} from '../domain/Answer';
   styleUrls: ['./question-tile.component.scss']
 })
 export class QuestionTileComponent implements OnInit {
-
   @Input() question: Question;
 
-  constructor(private gameState: GameStateService) { }
+  constructor(private gameState: GameStateService) {
+  }
 
   ngOnInit() {
   }
 
   public selectAnswer(answer: Answer): void {
-    let result = this.gameState.guess(answer);
+    const result = this.gameState.guess(answer);
     console.log(`Guess answer: ${answer.title} > ${result}`);
   }
 }

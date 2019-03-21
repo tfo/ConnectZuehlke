@@ -6,9 +6,9 @@ import {QuestionDtoMapper} from './QuestionDtoMapper';
 export class GameDtoMapper {
 
   public static mapFromDto(dto: GameDto): Game {
-    let employees = EmployeeDtoMapper.mapFromDtos(dto.employees);
-    let selectedEmployee = EmployeeDtoMapper.mapFromDto(dto.selectedEmployee);
-    let questions = QuestionDtoMapper.mapFromDtos(dto.questions);
+    const employees = EmployeeDtoMapper.mapFromDtos(dto.employees);
+    const selectedEmployee = EmployeeDtoMapper.mapFromDto(dto.selectedEmployee);
+    const questions = QuestionDtoMapper.mapFromDtos(dto.questions);
 
     return new Game(dto.id, employees, selectedEmployee, questions);
   }
