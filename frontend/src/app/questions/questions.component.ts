@@ -7,10 +7,10 @@ import {Question} from '../domain/Question';
   styleUrls: ['./questions.component.scss']
 })
 export class QuestionsComponent implements OnInit {
-
   @Input() questions: Question[];
-  
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

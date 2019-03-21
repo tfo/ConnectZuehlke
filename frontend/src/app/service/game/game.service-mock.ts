@@ -14,7 +14,7 @@ export const QUESTIONS: Question[] = [
       new Answer('q1-a2', 'Female', [3, 4], 'The person is female.')
     ]
   ),
-  new Question('q2', 'Where does the person work?',[
+  new Question('q2', 'Where does the person work?', [
       new Answer('q2-a1', 'Switzerland', [1], 'The person works in Switzerland.'),
       new Answer('q2-a2', 'Everywhere else', [2, 3, 4], 'The person works somewhere else.')
     ]
