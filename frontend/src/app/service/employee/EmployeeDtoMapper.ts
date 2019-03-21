@@ -1,5 +1,5 @@
-import {EmployeeDto} from "./EmployeeDto";
-import {Employee} from "../../domain/Employee";
+import {EmployeeDto} from './EmployeeDto';
+import {Employee} from '../../domain/Employee';
 
 export class EmployeeDtoMapper {
 

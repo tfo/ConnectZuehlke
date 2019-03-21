@@ -4,7 +4,7 @@ import {catchError, map} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {EmployeeDto} from './EmployeeDto';
 import {Employee} from '../../domain/Employee';
-import {EmployeeDtoMapper} from "./EmployeeDtoMapper";
+import {EmployeeDtoMapper} from './EmployeeDtoMapper';
 
 @Injectable({providedIn: 'root'})
 export class EmployeeService {
