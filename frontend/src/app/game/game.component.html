@@ -6,14 +6,10 @@
     <img src="assets/silhouette.jpg">
 
     <div class="container">
-      <div class="grid-item"><img src="assets/random_pictures/2.jpg"></div>
-      <div class="grid-item"><img src="assets/random_pictures/7.jpg"></div>
-      <div class="grid-item"><img src="assets/random_pictures/32.jpg"></div>
-      <div class="grid-item"><img src="assets/random_pictures/43.jpg"></div>
-      <div class="grid-item"><img src="assets/random_pictures/54.jpg"></div>
-      <div class="grid-item"><img src="assets/random_pictures/66.jpg"></div>
-      <div class="grid-item"><img src="assets/random_pictures/67.jpg"></div>
-      <div class="grid-item"><img src="assets/random_pictures/85.jpg"></div>
+
+      <div class="grid-item" *ngFor="let secretEmployee of secretEmployees">
+        <img src="assets/random_pictures/{{secretEmployee.pictureId}}.jpg">
+      </div>
     </div>
   </div>
 </div>

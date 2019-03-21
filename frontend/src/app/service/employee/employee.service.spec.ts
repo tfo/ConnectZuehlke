@@ -3,7 +3,7 @@ import {TestBed} from '@angular/core/testing';
 import {EmployeeService} from './employee.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {Employee} from '../../domain/Employee';
-import {EMPLOYEES} from './employee.service-mock';
+import {SECRET_EMPLOYEES} from './employee.service-mock';
 
 describe('EmployeeService', () => {
   let httpMock: HttpTestingController;
@@ -27,7 +27,7 @@ describe('EmployeeService', () => {
   });
 
   it('should call get employees', () => {
-    const dummyEmployees = EMPLOYEES;
+    const dummyEmployees = SECRET_EMPLOYEES;
     service.getAllEmployees().subscribe((employees: Employee[]) => {
       expect(employees.length).toBe(4);
       expect(employees).toEqual(dummyEmployees);

@@ -1,8 +1,9 @@
 import {GameService} from './game.service';
 import {Observable, of} from 'rxjs';
 import {Game} from '../../domain/Game';
-import {EMPLOYEES} from '../employee/employee.service-mock';
+import {SECRET_EMPLOYEES} from '../employee/employee.service-mock';
 import {Question} from '../../domain/Question';
+import {Injectable} from "@angular/core";
 
 export const QUESTIONS: Question[] = [
   {title: 'What gender is the person?', answers: [{title: 'Male', ids: [1,2]}, {title: 'Female', ids: [3,4]}]},
@@ -12,11 +13,12 @@ export const QUESTIONS: Question[] = [
 
 export const GAME: Game = {
   id: 'game-id',
-  employees: EMPLOYEES,
-  selectedEmployee: EMPLOYEES[2],
-  questions: QUESTIONS
+  questions: QUESTIONS,
+  employees: SECRET_EMPLOYEES,
+  selectedEmployee: SECRET_EMPLOYEES[2]
 };
 
+@Injectable({providedIn: 'root'})
 export class GameServiceMock implements GameService {
   createNewGame(): Observable<Game> {
     return of(GAME);
