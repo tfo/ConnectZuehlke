@@ -4,7 +4,7 @@ import {Answer} from '../../domain/Answer';
 export class AnswerDtoMapper {
 
   public static mapFromDto(dto: AnswerDto): Answer {
-    return new Answer(dto.id, dto.title, dto.matchingEmployeeIds);
+    return new Answer(dto.id, dto.title, dto.matchingEmployeeIds, dto.fact);
   }
 
   public static mapFromDtos(dtos: AnswerDto[]): Answer[] {
