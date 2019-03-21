@@ -67,6 +67,6 @@ export class GameStateService {
     this.employees
       .filter(employee => employee.hidden === false)
       .filter(employee => answer.matchingEmployeeIds.includes(employee.id))
-      .every(employee => employee.hidden = true);
+      .forEach(employee => employee.hidden = true);
   }
 }
