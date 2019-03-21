@@ -9,7 +9,7 @@
     <mat-button-toggle-group name="{{question.id}}">
       <mat-button-toggle *ngFor="let answer of question.answers"
         value="{{answer.id}}"
-        (click)="selectAnswer(answer)">
+        (click)="selectAnswer(question, answer)">
         {{answer.title}}
       </mat-button-toggle>
     </mat-button-toggle-group>

@@ -22,8 +22,8 @@ export class QuestionTileComponent implements OnInit {
   ngOnInit() {
   }
 
-  public selectAnswer(answer: Answer): void {
-    const result = this.gameState.guess(answer);
+  public selectAnswer(question: Question, answer: Answer): void {
+    const result = this.gameState.guess(question, answer);
 
     if (result === true) {
       this.answerResult = faCheckCircle;

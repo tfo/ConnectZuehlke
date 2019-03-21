@@ -10,4 +10,8 @@ export class Question {
     this.title = title;
     this.answers = answers;
   }
+
+  public getAllAnswersExcept(answer: Answer): Answer[] {
+    return this.answers.filter(value => value.id !== answer.id)
+  }
 }
