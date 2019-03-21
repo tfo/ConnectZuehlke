@@ -29,7 +29,7 @@ describe('EmployeeService', () => {
   it('should call get employees', () => {
     const dummyEmployees = EMPLOYEES;
     service.getAllEmployees().subscribe((employees: Employee[]) => {
-      expect(employees.length).toBe(2);
+      expect(employees.length).toBe(4);
       expect(employees).toEqual(dummyEmployees);
     });
 
