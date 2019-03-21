@@ -19,15 +19,6 @@ public class Employee {
     private final String privateAddressCity;
     private final int bankHours;
 
-
-    public Employee(String firstName, String lastName, int id, String location) {
-        this(firstName, lastName, id, firstName.substring(0, 1) + lastName.substring(0, 2), location);
-    }
-
-    public Employee(String firstName, String lastName, int id, String code, String location) {
-        this(firstName,lastName, id, code.toLowerCase(), location, 0, false, false, false, 0, 0, "", "", 0, "", 0);
-    }
-
     public Employee(String firstName, String lastName, int id, String code, String location, int percentage, boolean isManagement, boolean isPassionated, boolean flexpay, int experience, int skillProfileCompleteness, String entryDate, String grade, int gender, String privateAddressCity, int bankHours) {
         this.firstName = firstName;
         this.lastName = lastName;
