@@ -23,6 +23,10 @@ export class QuestionTileComponent implements OnInit {
   }
 
   public selectAnswer(question: Question, answer: Answer): void {
+    if (question.answered === true) {
+      return;
+    }
+
     const result = this.gameState.guess(question, answer);
 
     if (result === true) {

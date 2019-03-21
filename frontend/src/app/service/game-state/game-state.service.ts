@@ -30,6 +30,8 @@ export class GameStateService {
   }
 
   public guess(question: Question, answer: Answer): boolean {
+    question.setAnswered();
+
     this.questionCount++;
 
     const matchSecretEmployee = this.matchSecretEmployee(answer);
