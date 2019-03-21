@@ -5,7 +5,7 @@ import {Answer} from '../../domain/Answer';
 import {Game} from '../../domain/Game';
 import {Question} from '../../domain/Question';
 import {SECRET_EMPLOYEES} from '../employee/employee.service-mock';
-import {GameService} from "./game.service";
+import {GameService} from './game.service';
 
 
 export const QUESTIONS: Question[] = [

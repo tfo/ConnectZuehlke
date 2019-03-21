@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GameStateService} from '../service/game-state/game-state.service';
-import {GameRestService} from "../service/game/game.service-rest";
+import {GameRestService} from '../service/game/game.service-rest';
 
 @Component({
   selector: 'app-game',
@@ -9,8 +9,8 @@ import {GameRestService} from "../service/game/game.service-rest";
 })
 export class GameComponent implements OnInit {
 
-  questionCounterTitle = "Questions: ";
-  missedGuessesCounterTitle = "Missed questions: ";
+  questionCounterTitle = 'Questions: ';
+  missedGuessesCounterTitle = 'Missed questions: ';
 
   constructor(private gameService: GameRestService, public gameState: GameStateService) {
   }
