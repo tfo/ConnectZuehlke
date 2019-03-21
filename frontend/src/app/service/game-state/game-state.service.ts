@@ -46,7 +46,7 @@ export class GameStateService {
     }
     this.hasWon = this.employees.filter(value => value.hidden == false).length == 1;
     if (this.hasWon) {
-      this.employees.filter(value => value.hidden == false).forEach(value => value.hidden = true)
+      this.employees.filter(value => value.hidden == false).forEach(value => value.hidden = true);
     }
 
     return matchSecretEmployee;
