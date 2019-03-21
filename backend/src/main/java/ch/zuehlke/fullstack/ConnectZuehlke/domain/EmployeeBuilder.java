@@ -13,7 +13,7 @@ public class EmployeeBuilder {
     private int experience = 0;
     private int skillProfileCompleteness = 0;
     private String entryDate = "";
-    private String grade = "";
+    private Grade grade = null;
     private int gender = 0;
     private String privateAddressCity = "";
     private int bankHours = 0;
@@ -79,7 +79,7 @@ public class EmployeeBuilder {
     }
 
     public EmployeeBuilder setGrade(String grade) {
-        this.grade = grade;
+        this.grade = Grade.forGrade(grade);
         return this;
     }
 

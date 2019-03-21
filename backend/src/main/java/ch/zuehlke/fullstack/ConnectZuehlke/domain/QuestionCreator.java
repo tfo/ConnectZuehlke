@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 class QuestionCreator {
 
+    private static final int PERCENTAGE_FULL_TIME = 100;
+
     private final List<Employee> employees;
     private final Employee selectedEmployee;
 
@@ -16,6 +18,7 @@ class QuestionCreator {
     List<Question> create() {
         List<Question> questions = new ArrayList<>();
 
+        questions.add(createFullTimeQuestion());
         questions.add(createBankHoursQuestion());
         questions.add(createHasSkillProfileCompletedQuestion());
         questions.add(createIsManagementQuestion());
@@ -26,6 +29,22 @@ class QuestionCreator {
         questions.add(createGradeQuestion());
 
         return questions;
+    }
+
+    private Question createFullTimeQuestion() {
+        List<Integer> yesMatchingEmployeeIds = this.employees.stream()
+                .filter(employee -> employee.getPercentage() == PERCENTAGE_FULL_TIME)
+                .map(Employee::getId)
+                .collect(Collectors.toList());
+        List<Integer> noMatchingEmployeeIds = this.employees.stream()
+                .filter(employee -> employee.getPercentage() < PERCENTAGE_FULL_TIME)
+                .map(Employee::getId)
+                .collect(Collectors.toList());
+
+        return new Question(generateId(), "Does the person work full time (100%) for Zühlke?", Arrays.asList(
+                new Answer(generateId(), "Yes", yesMatchingEmployeeIds),
+                new Answer(generateId(), "No", noMatchingEmployeeIds)
+        ));
     }
 
     private Question createBankHoursQuestion() {
@@ -92,7 +111,7 @@ class QuestionCreator {
             Country country = entry.getKey();
             List<Integer> matchingEmployeeIds = entry.getValue();
 
-            answers.add(new Answer(UUID.randomUUID().toString(), country.getName(), matchingEmployeeIds));
+            answers.add(new Answer(generateId(), country.getName(), matchingEmployeeIds));
         }
 
         return new Question("5","The person works in ...?", answers);
@@ -122,18 +141,29 @@ class QuestionCreator {
     }
 
     private Question createGradeQuestion() {
-        List<Integer> highGradeIds = employees.stream().filter(employee -> hasHighGrade(employee.getGrade())).map(Employee::getId).collect(Collectors.toList());
-        Answer abc = new Answer("0","A, B or C", highGradeIds);
+        List<Integer> managementMatchingEmployeeIds = employees.stream()
+                .filter(employee -> employee.getGrade().isManagement())
+                .map(Employee::getId)
+                .collect(Collectors.toList());
 
-        List<Integer> lowGradeIds = employees.stream().filter(employee -> !hasHighGrade(employee.getGrade())).map(Employee::getId).collect(Collectors.toList());
-        Answer def = new Answer("1","D, E or F", lowGradeIds);
+        List<Integer> leadMatchingEmployeeIds = employees.stream()
+                .filter(employee -> employee.getGrade().isLead())
+                .map(Employee::getId)
+                .collect(Collectors.toList());
 
-        return new Question("7","Has the person grade C or higher?", Arrays.asList(abc, def));
+        List<Integer> normalMatchingEmployeeIds = employees.stream()
+                .filter(employee -> employee.getGrade().isNormalEmployee())
+                .map(Employee::getId)
+                .collect(Collectors.toList());
+
+        return new Question(generateId(),"Which grade has the person?", Arrays.asList(
+                new Answer(generateId(), "Management", managementMatchingEmployeeIds),
+                new Answer(generateId(), "Lead", leadMatchingEmployeeIds),
+                new Answer(generateId(), "Normal", normalMatchingEmployeeIds)
+        ));
     }
 
-    private static boolean hasHighGrade(String grade) {
-        return  grade.toLowerCase().contains("a") ||
-                grade.toLowerCase().contains("b") ||
-                grade.toLowerCase().contains("c");
+    private String generateId() {
+        return UUID.randomUUID().toString();
     }
 }

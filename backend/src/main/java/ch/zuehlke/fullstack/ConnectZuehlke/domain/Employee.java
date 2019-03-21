@@ -14,12 +14,12 @@ public class Employee {
     private final int experience;
     private final int skillProfileCompleteness;
     private final String entryDate;
-    private final String grade;
+    private final Grade grade;
     private final int gender;
     private final String privateAddressCity;
     private final int bankHours;
 
-    public Employee(String firstName, String lastName, int id, String code, String location, int percentage, boolean isManagement, boolean isPassionated, boolean flexpay, int experience, int skillProfileCompleteness, String entryDate, String grade, int gender, String privateAddressCity, int bankHours) {
+    public Employee(String firstName, String lastName, int id, String code, String location, int percentage, boolean isManagement, boolean isPassionated, boolean flexpay, int experience, int skillProfileCompleteness, String entryDate, Grade grade, int gender, String privateAddressCity, int bankHours) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
@@ -86,7 +86,7 @@ public class Employee {
         return entryDate;
     }
 
-    public String getGrade() {
+    public Grade getGrade() {
         return grade;
     }
 
