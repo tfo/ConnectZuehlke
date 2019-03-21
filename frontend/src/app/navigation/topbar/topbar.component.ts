@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {GameStateService} from '../../service/game-state/game-state.service';
+import {faHeart, faHeartBroken} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-topbar',
@@ -8,6 +9,8 @@ import {GameStateService} from '../../service/game-state/game-state.service';
 })
 export class TopbarComponent {
 
+  heartIcon = faHeart;
+  brokenIcon = faHeartBroken;
 
   constructor(public gameState: GameStateService) {
   }

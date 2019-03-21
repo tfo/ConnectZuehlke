@@ -25,7 +25,7 @@ class QuestionCreator {
         questions.add(createIsManagementQuestion());
         questions.add(createSexQuestion());
         questions.add(createFlexPayQuestion());
-        questions.add(createLocationQuestion());
+        //questions.add(createLocationQuestion());
         questions.add(createEntryDateQuestion());
         questions.add(createGradeQuestion());
 

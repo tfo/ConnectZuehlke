@@ -8,7 +8,6 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import {faAngular, faJava} from '@fortawesome/free-brands-svg-icons';
 import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image';
 
-
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -21,6 +20,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule,
   MatSnackBarModule,
@@ -75,6 +75,7 @@ library.add(faAngular);
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatProgressSpinnerModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBrgp24CvFV3M0PZGByVDVEG0qn56k8Y-g'})
   ],
   providers: [

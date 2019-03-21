@@ -143,7 +143,10 @@ public class GameService {
             "lich",
             "jpro",
             "ivdi",
-            "sahi"
+            "sahi",
+            "desc",
+            "mali",
+            "baho"
     );
 
     public Game createGame(int numberOfEmployees) {

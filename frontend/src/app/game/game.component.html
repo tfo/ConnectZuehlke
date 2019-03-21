@@ -1,28 +1,35 @@
-<div class="game-title">
-  Hint: {{gameState.secretEmployee.firstName}}
-
-  <img *ngIf="!gameState.hasWon" src="assets/silhouette.jpg" alt="An employee silhouette">
-  <div *ngIf="gameState.hasWon">
-    <img src="/api/employee/{{gameState.secretEmployee.code}}/picture">
-    <ul class="winner-details">
-      <li><b>{{gameState.secretEmployee.firstName}} {{gameState.secretEmployee.lastName}}</b></li>
-      <li>{{gameState.secretEmployee.location}}</li>
-    </ul>
-  </div>
+<div *ngIf="gameState.secretEmployee===undefined">
+  <mat-spinner style="margin: 60px auto auto;"></mat-spinner>
 </div>
 
-<div class="spacer"></div>
+<div *ngIf="gameState.secretEmployee">
+  <div class="game-title">
+    Hint: {{gameState.secretEmployee.firstName}}
 
-<div class="grid-container">
-  <div class="grid">
-    <div class="picture-container" *ngFor="let employee of gameState.employees">
-      <div class="overlay" *ngIf="employee.hidden"></div>
-      <img src="/api/employee/{{employee.code}}/picture" alt="{{employee.firstName}}'s picture">
-      <div>{{employee.firstName}}</div>
+    <img *ngIf="!gameState.hasWon" src="assets/silhouette.jpg" alt="An employee silhouette">
+    <div *ngIf="gameState.hasWon">
+      <img src="/api/employee/{{gameState.secretEmployee.code}}/picture">
+      <ul class="winner-details">
+        <li><b>{{gameState.secretEmployee.firstName}} {{gameState.secretEmployee.lastName}}</b></li>
+        <li>{{gameState.secretEmployee.location}}</li>
+      </ul>
     </div>
   </div>
+
+  <div class="spacer"></div>
+
+  <div class="grid-container">
+    <div class="grid">
+      <div class="picture-container" *ngFor="let employee of gameState.employees">
+        <div class="overlay" *ngIf="employee.hidden"></div>
+        <img src="/api/employee/{{employee.code}}/picture" alt="{{employee.firstName}}'s picture">
+        <div>{{employee.firstName}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <app-questions [questions]="gameState.questions"></app-questions>
 </div>
 
-<div class="spacer"></div>
-
-<app-questions [questions]="gameState.questions"></app-questions>
