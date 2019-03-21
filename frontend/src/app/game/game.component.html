@@ -19,6 +19,7 @@
     <div class="picture-container" *ngFor="let employee of gameState.employees">
       <div class="overlay" *ngIf="employee.hidden"></div>
       <img src="/api/employee/{{employee.code}}/picture" alt="{{employee.firstName}}'s picture">
+      <div>{{employee.firstName}}</div>
     </div>
   </div>
 </div>
