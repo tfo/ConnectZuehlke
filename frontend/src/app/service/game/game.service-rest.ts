@@ -13,7 +13,7 @@ import {GameDtoMapper} from './GameDtoMapper';
 export class GameRestService implements GameService {
 
   private GAME_URL = '/api/game';
-  private GAME_SIZE = 15;
+  private GAME_SIZE = 8;
 
   constructor(private http: HttpClient) {
   }

@@ -3,5 +3,4 @@ export interface EmployeeDto {
   lastName: string;
   id: number;
   code: string;
-  pictureId: string;
 }
