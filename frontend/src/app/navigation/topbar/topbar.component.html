@@ -1,10 +1,10 @@
 <mat-toolbar *ngIf=gameState.secretEmployee>
   <span class="fill-remaining-space">Guess the secret employee</span>
   <span class="fill-remaining-space">Questions: {{gameState.questionCount}}</span>
-  <div style="margin-right: 3px" *ngFor="let i of Arr(maxLives-gameState.missedQuestionCount).fill(1)">
+  <div  style="margin-right: 3px" *ngFor="let i of Arr(maxLives-gameState.missedQuestionCount).fill(1)">
     <fa-icon class="regular" [icon]="heartIcon"></fa-icon>
   </div>
-  <div *ngFor="let i of Arr(gameState.missedQuestionCount).fill(1)">
+  <div class="heartBeatAnimation" *ngFor="let i of Arr(gameState.missedQuestionCount).fill(1)">
     <fa-icon class="regular" [icon]="brokenIcon"></fa-icon>
   </div>
 </mat-toolbar>

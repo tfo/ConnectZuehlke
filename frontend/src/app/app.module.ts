@@ -79,6 +79,7 @@ library.add(faAngular);
     MatListModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    BrowserAnimationsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBrgp24CvFV3M0PZGByVDVEG0qn56k8Y-g'})
   ],
   entryComponents: [EndgameDialogComponent],
