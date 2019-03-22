@@ -12,6 +12,7 @@ import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GradeQuestionFactory
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -209,6 +210,6 @@ public class GameServiceTest {
     }
 
     private void whenGetEmployees() {
-        when(this.employeeService.getEmployees()).thenReturn(EMPLOYEES);
+        when(this.employeeService.getEmployees()).thenReturn(new ArrayList<>(EMPLOYEES));
     }
 }
