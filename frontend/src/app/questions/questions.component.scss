@@ -1,23 +1,11 @@
-.grid-container {
-  height: 75vh;
+.question-list {
+  height: 100%;
   margin: auto;
   overflow-y: scroll;
   text-align: center;
 }
 
-.grid {
-  display: grid;
-  grid-template-rows: auto auto auto auto;
-  grid-template-columns: 100%;
-  grid-gap: 0;
-  margin: auto;
-}
-
-.grid-item {
+.question-item {
   padding: 5px;
   margin: 5px;
-}
-
-.question-container {
-  text-align: center;
 }

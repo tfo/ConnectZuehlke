@@ -23,6 +23,7 @@ $picture-size: 160px;
 }
 
 .grid {
+  height: calc(100vh - 160px);
   display: grid;
   grid-template-rows: 100%;
   grid-template-columns: 72% 25%;
@@ -87,4 +88,8 @@ $picture-size: 160px;
 
 .winner-details {
   list-style-type:none;
+}
+
+.question-container {
+  height: 100%;
 }
