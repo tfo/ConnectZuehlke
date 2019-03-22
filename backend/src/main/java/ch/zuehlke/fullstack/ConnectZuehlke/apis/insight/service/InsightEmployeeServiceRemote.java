@@ -64,10 +64,13 @@ public class InsightEmployeeServiceRemote implements InsightEmployeeService {
 
     @Override
     public Optional<Project> getCurrentProject(String code) {
-        ResponseEntity<ProjectDto> response = this.insightRestTemplate
-                .getForEntity("/employees/" + code + "/projects/current", ProjectDto.class);
-
-        System.out.println();
-        return null;
+        ResponseEntity<List<ProjectDto>> response = this.insightRestTemplate
+                .exchange("/employees/" + code + "/projects/current", GET, null, new ParameterizedTypeReference<List<ProjectDto>>() {
+                });
+        if (response.getBody().isEmpty()) {
+            return Optional.empty();
+        }
+        ProjectDto projectDto = response.getBody().get(0);
+        return Optional.of(new Project(projectDto.getCustomerName(), ""));
     }
 }
