@@ -6,7 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 import {GameService} from './game.service';
 import {Game} from '../../domain/Game';
 import {GameDtoMapper} from './GameDtoMapper';
-import {GAME_SIZE} from "./Constants";
+import {GAME_SIZE} from './Constants';
 
 @Injectable({
   providedIn: 'root'

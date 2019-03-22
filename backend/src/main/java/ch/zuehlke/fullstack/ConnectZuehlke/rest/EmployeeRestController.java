@@ -28,7 +28,7 @@ public class EmployeeRestController {
 
     @GetMapping("/api/employee/{code}")
     public SingleEmployee employee(@PathVariable(value = "code") String code) {
-        return employeeService.getSingleEmployee(code);
+        return employeeService.getSingleEmployee(code).orElse(null);
     }
 
     @GetMapping(value = "/api/employee/{id}/picture",

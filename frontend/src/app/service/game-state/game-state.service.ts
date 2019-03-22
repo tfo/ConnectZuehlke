@@ -3,8 +3,8 @@ import {Employee} from '../../domain/Employee';
 import {Game} from '../../domain/Game';
 import {Question} from '../../domain/Question';
 import {Answer} from '../../domain/Answer';
-import {MAX_LIVES} from "../game/Constants";
-import {Subject} from "rxjs";
+import {MAX_LIVES} from '../game/Constants';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
