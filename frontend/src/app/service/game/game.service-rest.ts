@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {GameDto} from './GameDto';
 import {catchError, map} from 'rxjs/operators';
 import {GameService} from './game.service';
@@ -14,8 +14,10 @@ import {GAME_SIZE} from "./Constants";
 export class GameRestService implements GameService {
 
   private GAME_URL = '/api/game';
+  startNewGame: Subject<void>;
 
   constructor(private http: HttpClient) {
+    this.startNewGame = new Subject();
   }
 
   public createNewGame(): Observable<Game> {

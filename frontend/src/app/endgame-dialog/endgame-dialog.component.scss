@@ -1,0 +1,43 @@
+.mat-dialog-title {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.winner-details {
+  list-style-type:none;
+  width: 160px;
+  padding: 0;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+$picture-size: 160px;
+
+img {
+  width: $picture-size;
+  display: block;
+  margin: auto;
+}
+
+.heart {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20pt;
+  color: darkred;
+}
+
+p {
+  font-weight: bold;
+}
+
+fa-icon {
+  width: 100px;
+}
+
