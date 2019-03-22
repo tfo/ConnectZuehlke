@@ -8,8 +8,11 @@
   }
 }
 
-.spacer {
+.hint {
   height: 35px;
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 15pt;
 }
 
 $picture-size: 160px;
@@ -69,25 +72,6 @@ $picture-size: 160px;
     background-size: 100% 100%;
     opacity: 0.75;
   }
-}
-
-.grid-container-header {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: 100%;
-}
-.grid-header {
-  display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: 30% 40% 30%;
-  grid-gap: 0px;
-  margin: auto;
-}
-
-.winner-details {
-  list-style-type:none;
 }
 
 .question-container {

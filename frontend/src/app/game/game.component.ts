@@ -3,6 +3,7 @@ import {GameStateService} from '../service/game-state/game-state.service';
 import {GameRestService} from '../service/game/game.service-rest';
 import {EndgameDialogComponent} from "../endgame-dialog/endgame-dialog.component";
 import {MatDialog} from "@angular/material";
+import {faIdCardAlt} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-game',
@@ -10,6 +11,8 @@ import {MatDialog} from "@angular/material";
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
+
+  idCard = faIdCardAlt;
 
   constructor(private gameService: GameRestService,
               public gameState: GameStateService,
