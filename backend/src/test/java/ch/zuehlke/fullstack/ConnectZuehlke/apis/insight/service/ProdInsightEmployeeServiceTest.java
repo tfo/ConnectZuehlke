@@ -2,6 +2,7 @@ package ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service;
 
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringRunner.class)
 @SpringBootTest(properties = {"insight.authentication.username=test", "insight.authentication.password=ImJustFake"})
 @ActiveProfiles("prod")
+@Ignore
 public class ProdInsightEmployeeServiceTest {
 
     @Autowired
