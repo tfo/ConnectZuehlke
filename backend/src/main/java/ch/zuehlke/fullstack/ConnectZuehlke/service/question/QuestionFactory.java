@@ -1,4 +1,4 @@
-package ch.zuehlke.fullstack.ConnectZuehlke.domain.question;
+package ch.zuehlke.fullstack.ConnectZuehlke.service.question;
 
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Question;

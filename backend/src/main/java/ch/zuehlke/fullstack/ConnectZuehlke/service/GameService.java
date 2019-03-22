@@ -5,7 +5,7 @@ import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.service.GenderizeServi
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.QuestionCreator;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.QuestionCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import java.util.*;
 public class GameService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GameService.class);
-
 
     private final InsightEmployeeService employeeService;
     private final GenderizeService genderizeService;
