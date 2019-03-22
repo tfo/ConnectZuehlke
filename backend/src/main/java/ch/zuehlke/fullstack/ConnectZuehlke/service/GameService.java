@@ -53,7 +53,7 @@ public class GameService {
             Employee selectedEmployee = selectEmployee(chosenEmployees);
             SingleEmployee selectedSingleEmployee = this.employeeService.getSingleEmployee(selectedEmployee.getCode());
 
-            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedSingleEmployee, this.questionCreator.create(chosenEmployees));
+            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee, this.questionCreator.create(chosenEmployees));
 
             foundUniqueSolution = game.hasUniqueSolution();
         }
