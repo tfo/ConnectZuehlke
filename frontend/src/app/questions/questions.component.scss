@@ -1,6 +1,8 @@
 .grid-container {
-  text-align: center;
+  height: 75vh;
   margin: auto;
+  overflow-y: scroll;
+  text-align: center;
 }
 
 .grid {
