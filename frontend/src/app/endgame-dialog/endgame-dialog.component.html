@@ -1,0 +1,25 @@
+<h1 *ngIf="gameState.hasWon" mat-dialog-title>YOU WON!</h1>
+<h1 *ngIf="gameState.hasLost" mat-dialog-title>Sorry, you lost!</h1>
+
+<div mat-dialog-content>
+  <div *ngIf="gameState.hasLost" class="container">
+      <div class="heart" *ngFor="let i of Arr(gameState.missedQuestionCount).fill(1)">
+        <fa-icon class="heartIcon" [icon]="brokenIcon"></fa-icon>
+      </div>
+  </div>
+
+  <div *ngIf="gameState.hasWon" class="container">
+    <p>Questions needed: {{gameState.questionCount}}</p>
+  </div>
+
+  <img src="/api/employee/{{gameState.secretEmployee.code}}/picture">
+  <ul class="winner-details">
+    <li><b>{{gameState.secretEmployee.firstName}} {{gameState.secretEmployee.lastName}}</b></li>
+    <li>{{gameState.secretEmployee.location}}</li>
+  </ul>
+
+</div>
+<mat-dialog-actions>
+  <button mat-button cdkFocusInitial (click)="startNewGame()">Start new game</button>
+</mat-dialog-actions>
+

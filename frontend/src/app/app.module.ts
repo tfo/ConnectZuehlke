@@ -7,7 +7,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faHeart} from '@fortawesome/free-solid-svg-icons';
 import {faAngular, faJava} from '@fortawesome/free-brands-svg-icons';
 import {intersectionObserverPreset, LazyLoadImageModule} from 'ng-lazyload-image';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -35,6 +35,7 @@ import {AgmCoreModule} from '@agm/core';
 import {ErrorRequestInterceptor} from './common/error-request-interceptor';
 import {QuestionTileComponent} from './question-tile/question-tile.component';
 import {QuestionsComponent} from './questions/questions.component';
+import {EndgameDialogComponent} from './endgame-dialog/endgame-dialog.component';
 
 
 // For more icons, please checkout https://fontawesome.com/icons?d=gallery
@@ -52,7 +53,8 @@ library.add(faAngular);
     GameComponent,
     TopbarComponent,
     QuestionTileComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    EndgameDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,12 @@ library.add(faAngular);
     MatSidenavModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyBrgp24CvFV3M0PZGByVDVEG0qn56k8Y-g'})
+  ],
+  entryComponents: [EndgameDialogComponent],
+  exports: [
+    EndgameDialogComponent
   ],
   providers: [
     {

@@ -4,6 +4,7 @@ import {Game} from '../../domain/Game';
 import {Question} from '../../domain/Question';
 import {Answer} from '../../domain/Answer';
 import {MAX_LIVES} from "../game/Constants";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class GameStateService {
   missedQuestionCount: number;
   hasWon: boolean;
   hasLost: boolean;
+  gameEnded = new BehaviorSubject<boolean>(false);
 
   constructor() {}
 
@@ -30,6 +32,20 @@ export class GameStateService {
 
     this.questionCount = 0;
     this.missedQuestionCount = 0;
+  }
+
+  public deinitialize(): void {
+    this.id = undefined;
+    this.employees = undefined;
+    this.secretEmployee = undefined;
+    this.questions = undefined;
+
+    this.questionCount = 0;
+    this.missedQuestionCount = 0;
+
+    this.hasWon = false;
+    this.hasLost = false;
+    this.gameEnded.next(false);
   }
 
   public getCorrectAnswerForSecretEmployee(question: Question): Answer {
@@ -57,6 +73,10 @@ export class GameStateService {
       this.hasWon = this.employees
         .filter(value => value.hidden === false)
         .length === 1;
+    }
+
+    if (this.hasWon || this.hasLost) {
+      this.gameEnded.next(true);
     }
 
     return matchSecretEmployee;
