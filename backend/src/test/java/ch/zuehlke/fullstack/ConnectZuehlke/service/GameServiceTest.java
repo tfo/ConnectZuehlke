@@ -5,15 +5,13 @@ import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeS
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.EmployeeBuilder;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.QuestionCreator;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.GenderQuestionFactory;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.GradeQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.QuestionCreator;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GenderQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GradeQuestionFactory;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

@@ -1,14 +1,12 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.BenchHoursQuestionFactory;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.GenderQuestionFactory;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.GradeQuestionFactory;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.QuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.BenchHoursQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GenderQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GradeQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.QuestionCreator;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import static ch.zuehlke.fullstack.ConnectZuehlke.service.GameServiceTest.EMPLOYEES;
