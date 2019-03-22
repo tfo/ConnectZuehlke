@@ -4,6 +4,8 @@ import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PhoneNumberFunFactFactoryTest {
@@ -22,7 +24,7 @@ public class PhoneNumberFunFactFactoryTest {
                 null, "+41 79 316 4668", "+41 43 216 6453");
 
         // Execute the test case
-        String actual = this.factory.create(employee);
+        String actual = this.factory.create(employee, new ArrayList<>());
 
         // Verify the test results
         assertThat(actual)
