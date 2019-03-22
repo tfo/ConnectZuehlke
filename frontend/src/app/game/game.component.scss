@@ -19,27 +19,28 @@ $picture-size: 160px;
   margin-left: auto;
   margin-right: auto;
   display: block;
-  width: $picture-size*4;
-}
-
-.grid-container-header {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  width: 100%;
-}
-.grid-header {
-  display: grid;
-  grid-template-rows: 100%;
-  grid-template-columns: 30% 40% 30%;
-  grid-gap: 0px;
-  margin: auto;
+  width: auto;
 }
 
 .grid {
   display: grid;
-  grid-template-rows:50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 72% 25%;
+  grid-gap: 15px;
+  margin: auto;
+}
+
+.gallery-grid-container {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: $picture-size*4;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-rows: 50% 50%;
   grid-template-columns: repeat(4, $picture-size);
   grid-gap: 15px;
   margin: auto;
@@ -48,6 +49,7 @@ $picture-size: 160px;
     width: $picture-size;
     display: block;
   }
+
   .picture-container {
     position: relative;
     width: $picture-size;
@@ -66,6 +68,21 @@ $picture-size: 160px;
     background-size: 100% 100%;
     opacity: 0.75;
   }
+}
+
+.grid-container-header {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+}
+.grid-header {
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: 30% 40% 30%;
+  grid-gap: 0px;
+  margin: auto;
 }
 
 .winner-details {
