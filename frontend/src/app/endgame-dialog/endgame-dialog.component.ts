@@ -13,6 +13,8 @@ export class EndgameDialogComponent implements OnInit {
 
   brokenIcon = faHeartBroken;
 
+  public static open = false;
+
   //used for creating array in html
   Arr = Array;
 
@@ -23,12 +25,11 @@ export class EndgameDialogComponent implements OnInit {
 
   startNewGame(): void {
     this.dialogRef.close();
+    EndgameDialogComponent.open = false;
     this.gameService.startNewGame.next();
-
   }
 
   ngOnInit() {
-
   }
 
 }

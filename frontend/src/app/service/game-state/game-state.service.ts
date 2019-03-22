@@ -4,7 +4,7 @@ import {Game} from '../../domain/Game';
 import {Question} from '../../domain/Question';
 import {Answer} from '../../domain/Answer';
 import {MAX_LIVES} from "../game/Constants";
-import {BehaviorSubject} from "rxjs";
+import {Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class GameStateService {
   missedQuestionCount: number;
   hasWon: boolean;
   hasLost: boolean;
-  gameEnded = new BehaviorSubject<boolean>(false);
+  gameEnded = new Subject<void>();
 
   constructor() {}
 
@@ -48,7 +48,6 @@ export class GameStateService {
 
     this.hasWon = false;
     this.hasLost = false;
-    this.gameEnded.next(false);
   }
 
   public getCorrectAnswerForSecretEmployee(question: Question): Answer {

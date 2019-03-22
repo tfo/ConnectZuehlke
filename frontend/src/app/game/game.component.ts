@@ -35,10 +35,12 @@ export class GameComponent implements OnInit {
   }
 
   private subscribeToGameEndSubject() {
-    this.gameState.gameEnded.subscribe(gameEnded => {
-      if (gameEnded) {
-        this.openEndgameDialog()
+    this.gameState.gameEnded.subscribe(() => {
+      if (!EndgameDialogComponent.open) {
+        this.openEndgameDialog();
+        EndgameDialogComponent.open = true;
       }
+
     });
   }
 
