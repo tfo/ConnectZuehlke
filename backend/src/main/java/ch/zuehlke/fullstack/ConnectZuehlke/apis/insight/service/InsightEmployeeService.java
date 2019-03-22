@@ -4,6 +4,7 @@ import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public interface InsightEmployeeService {
 
@@ -13,5 +14,5 @@ public interface InsightEmployeeService {
 
   SingleEmployee getSingleEmployee(String code);
 
-  Project getCurrentProject(String code);
+  Optional<Project> getCurrentProject(String code);
 }

@@ -53,7 +53,7 @@ public class GameService {
             List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
             Employee selectedEmployee = selectEmployee(chosenEmployees);
             SingleEmployee selectedSingleEmployee = this.employeeService.getSingleEmployee(selectedEmployee.getCode());
-            Project currentProject = this.employeeService.getCurrentProject(selectedEmployee.getCode());
+            Optional<Project> currentProject = this.employeeService.getCurrentProject(selectedEmployee.getCode());
 
             game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee, this.questionCreator.create(chosenEmployees));
 

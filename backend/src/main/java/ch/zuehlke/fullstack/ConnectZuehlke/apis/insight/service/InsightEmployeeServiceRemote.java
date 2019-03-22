@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpMethod.GET;
@@ -62,7 +63,7 @@ public class InsightEmployeeServiceRemote implements InsightEmployeeService {
     }
 
     @Override
-    public Project getCurrentProject(String code) {
+    public Optional<Project> getCurrentProject(String code) {
         ResponseEntity<ProjectDto> response = this.insightRestTemplate
                 .getForEntity("/employees/" + code + "/projects/current", ProjectDto.class);
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 
@@ -38,7 +39,7 @@ public class InsightEmployeeServiceMocked implements InsightEmployeeService {
     }
 
     @Override
-    public Project getCurrentProject(String code) {
+    public Optional<Project> getCurrentProject(String code) {
         return null;
     }
 }
