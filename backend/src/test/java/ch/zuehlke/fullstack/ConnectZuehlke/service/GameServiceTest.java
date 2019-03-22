@@ -5,6 +5,7 @@ import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeS
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.EmployeeBuilder;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.fact.FunFactGenerator;
 import ch.zuehlke.fullstack.ConnectZuehlke.service.question.QuestionCreator;
 import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GenderQuestionFactory;
 import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GradeQuestionFactory;
@@ -173,12 +174,14 @@ public class GameServiceTest {
 
     private GameService service;
     private InsightEmployeeService employeeService;
+    private FunFactGenerator funFactGenerator;
 
     @Before
     public final void setUp() {
         this.employeeService = mock(InsightEmployeeService.class);
+        this.funFactGenerator = mock(FunFactGenerator.class);
 
-        this.service = new GameService(employeeService, new MockedGenderizeService(), QUESTION_CREATOR);
+        this.service = new GameService(employeeService, new MockedGenderizeService(), QUESTION_CREATOR, funFactGenerator);
     }
 
     @Test

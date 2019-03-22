@@ -7,6 +7,8 @@ import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.Project;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.Question;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.fact.FunFactGenerator;
 import ch.zuehlke.fullstack.ConnectZuehlke.service.question.QuestionCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,14 +25,16 @@ public class GameService {
     private final InsightEmployeeService employeeService;
     private final GenderizeService genderizeService;
     private final QuestionCreator questionCreator;
+    private final FunFactGenerator funFactGenerator;
 
     @Autowired
     public GameService(InsightEmployeeService employeeService,
                        GenderizeService genderizeService,
-                       QuestionCreator questionCreator) {
+                       QuestionCreator questionCreator, FunFactGenerator funFactGenerator) {
         this.employeeService = employeeService;
         this.genderizeService = genderizeService;
         this.questionCreator = questionCreator;
+        this.funFactGenerator = funFactGenerator;
     }
 
     private static final List<String> profilesWithoutPicture = Arrays.asList(
@@ -54,8 +58,15 @@ public class GameService {
             Employee selectedEmployee = selectEmployee(chosenEmployees);
             SingleEmployee selectedSingleEmployee = this.employeeService.getSingleEmployee(selectedEmployee.getCode());
             Optional<Project> currentProject = this.employeeService.getCurrentProject(selectedEmployee.getCode());
+            List<Project> projects = new ArrayList<>();
+            currentProject.ifPresent(projects::add);
 
-            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee, this.questionCreator.create(chosenEmployees));
+            List<Question> questions = this.questionCreator.create(chosenEmployees);
+            String funFact = this.funFactGenerator.generate(selectedSingleEmployee, projects);
+
+            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee,
+                    questions,
+                    funFact);
 
             foundUniqueSolution = game.hasUniqueSolution();
         }

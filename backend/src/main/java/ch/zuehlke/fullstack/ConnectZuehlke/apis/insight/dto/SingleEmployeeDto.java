@@ -13,7 +13,13 @@ public class SingleEmployeeDto extends EmployeeDto {
     private String githubUrl;
     private String jobTitle;
     private String hcu;
-    private String teamNameName;
+    private String teamName;
+    @JsonProperty("MobilePhone")
+    private String mobilePhone;
+    @JsonProperty("BusinessPhone")
+    private String businessPhone;
+    @JsonProperty("Graduation")
+    private String graduation;
 
     @JsonProperty("Qualification")
     private void unpackJobTitleFromQualifiction(Map<String, String> qualification) {
@@ -28,10 +34,11 @@ public class SingleEmployeeDto extends EmployeeDto {
 
     @JsonProperty("Team")
     private void unpackTeamNameFromTeam(Map<String, String> team) {
-        teamNameName = team.get("Name");
+        teamName = team.get("Name");
     }
 
     public SingleEmployee toSingleEmployee() {
-        return new SingleEmployee(this.toEmployee(), (this.githubUrl != null), this.jobTitle, this.hcu, this.teamNameName);
+        return new SingleEmployee(this.toEmployee(), (this.githubUrl != null), this.jobTitle, this.hcu, this.teamName,
+                this.graduation, this.mobilePhone, this.businessPhone);
     }
 }

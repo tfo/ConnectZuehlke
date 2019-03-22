@@ -1,7 +1,5 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -13,12 +11,14 @@ public class Game {
     private final List<Employee> employees;
     private final Employee selectedEmployee;
     private final List<Question> questions;
+    private final String funFact;
 
-    public Game(String id, List<Employee> employees, Employee selectedEmployee, List<Question> questions) {
+    public Game(String id, List<Employee> employees, Employee selectedEmployee, List<Question> questions, String funFact) {
         this.id = id;
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
         this.questions = questions;
+        this.funFact = funFact;
     }
 
     public boolean hasUniqueSolution() {
@@ -54,5 +54,9 @@ public class Game {
 
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public String getFunFact() {
+        return funFact;
     }
 }
