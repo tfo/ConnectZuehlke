@@ -194,7 +194,7 @@ public class GameServiceTest {
                 .isNotNull();
         assertThat(actual.getEmployees())
                 .hasSize(6)
-                .contains(actual.getSelectedEmployee());
+                .contains(actual.getSelectedEmployee().getEmployee());
         assertThat(actual.getQuestions())
                 .hasSizeGreaterThan(0);
     }

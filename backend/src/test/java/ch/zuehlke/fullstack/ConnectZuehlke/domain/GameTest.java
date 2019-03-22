@@ -1,5 +1,6 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
 import ch.zuehlke.fullstack.ConnectZuehlke.service.question.BenchHoursQuestionFactory;
 import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GenderQuestionFactory;
 import ch.zuehlke.fullstack.ConnectZuehlke.service.question.GradeQuestionFactory;
@@ -24,7 +25,7 @@ public class GameTest {
     @Test
     public void hasUniqueSolution_withDefaultEmployees_success() {
         List<Employee> employees = EMPLOYEES;
-        Game game = new Game("0", employees, employees.get(0), QUESTION_CREATOR.create(employees));
+        Game game = new Game("0", employees, new SingleEmployee(employees.get(0), false, null, null, null), QUESTION_CREATOR.create(employees));
 
         assertTrue(game.hasUniqueSolution());
     }
@@ -35,7 +36,7 @@ public class GameTest {
         Employee clone = new EmployeeBuilder().setId(1).setGrade("A").build();
         List<Employee> employees = Arrays.asList(employee, clone);
 
-        Game game = new Game("0", employees, employee, QUESTION_CREATOR.create(employees));
+        Game game = new Game("0", employees, new SingleEmployee(employee, false, null, null, null), QUESTION_CREATOR.create(employees));
 
         assertFalse(game.hasUniqueSolution());
     }
