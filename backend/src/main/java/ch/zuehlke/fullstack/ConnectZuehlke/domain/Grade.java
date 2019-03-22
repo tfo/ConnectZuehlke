@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public enum Grade {
 
-    A(GradeType.MANAGEMENT),
-    B(GradeType.LEAD),
-    C(GradeType.LEAD),
-    D(GradeType.NORMAL),
-    E(GradeType.NORMAL),
-    F(GradeType.NORMAL),
-    G(GradeType.NORMAL);
+    A(GradeType.TOP),
+    B(GradeType.TOP),
+    C(GradeType.MIDDLE),
+    D(GradeType.MIDDLE),
+    E(GradeType.BOTTOM),
+    F(GradeType.BOTTOM),
+    G(GradeType.BOTTOM);
 
     private final GradeType type;
 
@@ -21,15 +21,15 @@ public enum Grade {
     }
 
     public boolean isManagement() {
-        return GradeType.MANAGEMENT.equals(type);
+        return GradeType.TOP.equals(type);
     }
 
     public boolean isLead() {
-        return GradeType.LEAD.equals(type);
+        return GradeType.MIDDLE.equals(type);
     }
 
     public boolean isNormalEmployee() {
-        return GradeType.NORMAL.equals(type);
+        return GradeType.BOTTOM.equals(type);
     }
 
     public static Grade forGrade(String name) {

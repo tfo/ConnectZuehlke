@@ -16,25 +16,25 @@ import static ch.zuehlke.fullstack.ConnectZuehlke.utils.IdGenerator.generateId;
 public class GradeQuestionFactory implements QuestionFactory {
     @Override
     public Question create(List<Employee> employees) {
-        Set<Integer> managementMatchingEmployeeIds = employees.stream()
+        Set<Integer> topEmployeeIds = employees.stream()
                 .filter(employee -> employee.getGrade().isManagement())
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
-        Set<Integer> leadMatchingEmployeeIds = employees.stream()
+        Set<Integer> middleEmployeeIds = employees.stream()
                 .filter(employee -> employee.getGrade().isLead())
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
-        Set<Integer> normalMatchingEmployeeIds = employees.stream()
+        Set<Integer> bottomEmployeeIds = employees.stream()
                 .filter(employee -> employee.getGrade().isNormalEmployee())
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
 
         return new Question(generateId(), "Which grade has the person?", Arrays.asList(
-                new Answer(generateId(), "A", managementMatchingEmployeeIds, "The secret person has Grade A."),
-                new Answer(generateId(), "B, C", leadMatchingEmployeeIds, "The secret person has Grade B or C."),
-                new Answer(generateId(), "D, E, F", normalMatchingEmployeeIds, "The secret person has Grade D, E or F.")
+                new Answer(generateId(), "A, B", topEmployeeIds, "The secret person has Grade A or B."),
+                new Answer(generateId(), "C, D", middleEmployeeIds, "The secret person has Grade C or D."),
+                new Answer(generateId(), "E, F, G", bottomEmployeeIds, "The secret person has Grade E, F or G.")
         ));
     }
 }
