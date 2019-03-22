@@ -15,7 +15,7 @@ public class WorkedInFunFactFactory implements FunFactFactory {
     public String create(SingleEmployee employee, List<Project> projects) {
         Project project = chooseProject(projects);
 
-        return MessageFormat.format("The secret person works or worked for our lovely customer {0}.", project.getCustomerName());
+        return MessageFormat.format("Our lovely customer {0} work(ed) with the secret person.", project.getCustomerName());
     }
 
     @Override
