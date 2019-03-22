@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class ProjectDto {
     private String customerName;
-    private String industry;
 
     @JsonProperty("Project")
     private void unpackCustomerNameFromProject(Map<Object, Object> project) {
@@ -23,11 +22,7 @@ public class ProjectDto {
         return customerName;
     }
 
-    public String getIndustry() {
-        return industry;
-    }
-
     public Project toProject() {
-        return new Project(customerName, industry);
+        return new Project(customerName);
     }
 }
