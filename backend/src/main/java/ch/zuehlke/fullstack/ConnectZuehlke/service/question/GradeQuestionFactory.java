@@ -32,9 +32,9 @@ public class GradeQuestionFactory implements QuestionFactory {
                 .collect(Collectors.toSet());
 
         return new Question(generateId(), "Which grade has the person?", Arrays.asList(
-                new Answer(generateId(), "Management", managementMatchingEmployeeIds, "The secret person works in the management (Grade A)."),
-                new Answer(generateId(), "Lead", leadMatchingEmployeeIds, "The secret person works as lead (Grade B, C)."),
-                new Answer(generateId(), "Normal", normalMatchingEmployeeIds, "The secret person works as normal employee (Grade D - G).")
+                new Answer(generateId(), "A", managementMatchingEmployeeIds, "The secret person has Grade A."),
+                new Answer(generateId(), "B, C", leadMatchingEmployeeIds, "The secret person has Grade B or C."),
+                new Answer(generateId(), "D, E, F", normalMatchingEmployeeIds, "The secret person has Grade D, E or F.")
         ));
     }
 }
