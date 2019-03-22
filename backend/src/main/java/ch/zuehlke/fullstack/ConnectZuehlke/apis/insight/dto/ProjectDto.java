@@ -11,7 +11,11 @@ public class ProjectDto {
 
     @JsonProperty("Project")
     private void unpackCustomerNameFromProject(Map<Object, Object> project) {
-        this.customerName = (String)((LinkedHashMap)project.get("Customer")).get("Name");
+        if (project.get("Customer") != null) {
+            this.customerName = (String)((LinkedHashMap)project.get("Customer")).get("Name");
+        } else {
+            this.customerName = "Zühlke intern";
+        }
     }
 
     public String getCustomerName() {
