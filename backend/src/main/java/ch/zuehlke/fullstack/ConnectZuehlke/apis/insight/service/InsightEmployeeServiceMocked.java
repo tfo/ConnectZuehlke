@@ -36,4 +36,9 @@ public class InsightEmployeeServiceMocked implements InsightEmployeeService {
     public SingleEmployee getSingleEmployee(String code) {
         return null;
     }
+
+    @Override
+    public Project getCurrentProject(String code) {
+        return null;
+    }
 }

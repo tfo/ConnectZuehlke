@@ -3,6 +3,7 @@ package ch.zuehlke.fullstack.ConnectZuehlke.service;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.dto.GenderDto;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.service.GenderizeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.Project;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
@@ -52,6 +53,7 @@ public class GameService {
             List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
             Employee selectedEmployee = selectEmployee(chosenEmployees);
             SingleEmployee selectedSingleEmployee = this.employeeService.getSingleEmployee(selectedEmployee.getCode());
+            Project currentProject = this.employeeService.getCurrentProject(selectedEmployee.getCode());
 
             game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee, this.questionCreator.create(chosenEmployees));
 
