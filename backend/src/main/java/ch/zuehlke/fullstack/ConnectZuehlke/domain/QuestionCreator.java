@@ -139,7 +139,7 @@ class QuestionCreator {
 
         return new Question(generateId(), "The person has ...?", Arrays.asList(
                 new Answer(generateId(), "flex salary", flexPayerIds, "The secret person has a flexible salary."),
-                new Answer(generateId(), "fix salary", fixPayerIds, "The secret person a fixed salary.")
+                new Answer(generateId(), "fix salary", fixPayerIds, "The secret person has a fixed salary.")
         ));
     }
 
