@@ -6,6 +6,7 @@ import {catchError, map} from 'rxjs/operators';
 import {GameService} from './game.service';
 import {Game} from '../../domain/Game';
 import {GameDtoMapper} from './GameDtoMapper';
+import {GAME_SIZE} from "./Constants";
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,13 @@ import {GameDtoMapper} from './GameDtoMapper';
 export class GameRestService implements GameService {
 
   private GAME_URL = '/api/game';
-  private GAME_SIZE = 8;
 
   constructor(private http: HttpClient) {
   }
 
   public createNewGame(): Observable<Game> {
     const httpOptions = {
-      params: new HttpParams().set('numberOfEmployees', `${this.GAME_SIZE}`)
+      params: new HttpParams().set('numberOfEmployees', `${GAME_SIZE}`)
     };
 
     return this.http

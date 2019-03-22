@@ -3,6 +3,7 @@ import {Employee} from '../../domain/Employee';
 import {Game} from '../../domain/Game';
 import {Question} from '../../domain/Question';
 import {Answer} from '../../domain/Answer';
+import {MAX_LIVES} from "../game/Constants";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class GameStateService {
   questionCount: number;
   missedQuestionCount: number;
   hasWon: boolean;
+  hasLost: boolean;
 
   constructor() {}
 
@@ -48,9 +50,14 @@ export class GameStateService {
       this.missedQuestionCount++;
       this.hideMismatchingEmployeesByAnswer(answer);
     }
-    this.hasWon = this.employees
-      .filter(value => value.hidden === false)
-      .length === 1;
+
+    this.hasLost = this.missedQuestionCount >= MAX_LIVES;
+
+    if (!this.hasLost) {
+      this.hasWon = this.employees
+        .filter(value => value.hidden === false)
+        .length === 1;
+    }
 
     return matchSecretEmployee;
   }
