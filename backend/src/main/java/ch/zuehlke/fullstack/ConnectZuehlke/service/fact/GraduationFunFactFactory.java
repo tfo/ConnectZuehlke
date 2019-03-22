@@ -17,6 +17,6 @@ public class GraduationFunFactFactory implements FunFactFactory {
 
     @Override
     public boolean isPossible(SingleEmployee employee, List<Project> projects) {
-        return Objects.nonNull(employee.getGraduation());
+        return Objects.nonNull(employee) && Objects.nonNull(employee.getGraduation());
     }
 }

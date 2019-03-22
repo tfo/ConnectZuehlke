@@ -19,6 +19,6 @@ public class BossFunFactFactory implements FunFactFactory {
 
     @Override
     public boolean isPossible(SingleEmployee employee, List<Project> projects) {
-        return Objects.nonNull(employee.getSuperiorName());
+        return Objects.nonNull(employee) && Objects.nonNull(employee.getSuperiorName());
     }
 }

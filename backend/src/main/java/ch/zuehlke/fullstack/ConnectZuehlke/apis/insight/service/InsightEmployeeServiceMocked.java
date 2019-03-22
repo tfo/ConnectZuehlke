@@ -8,6 +8,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,12 +35,22 @@ public class InsightEmployeeServiceMocked implements InsightEmployeeService {
     }
 
     @Override
-    public SingleEmployee getSingleEmployee(String code) {
-        return null;
+    public Optional<SingleEmployee> getSingleEmployee(String code) {
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Project> getAllProjects(String code) {
+        return Collections.emptyList();
     }
 
     @Override
     public Optional<Project> getCurrentProject(String code) {
-        return null;
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Project> getProjectHistory(String code) {
+        return Collections.emptyList();
     }
 }

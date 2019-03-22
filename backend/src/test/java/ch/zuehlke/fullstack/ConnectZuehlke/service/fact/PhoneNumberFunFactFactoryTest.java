@@ -29,6 +29,5 @@ public class PhoneNumberFunFactFactoryTest {
         // Verify the test results
         assertThat(actual)
                 .isEqualTo("The secret person's phone number ends with 68.");
-
     }
 }

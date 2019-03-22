@@ -12,7 +12,11 @@ public interface InsightEmployeeService {
 
   byte[] getEmployeePicture(String id) throws IOException;
 
-  SingleEmployee getSingleEmployee(String code);
+  Optional<SingleEmployee> getSingleEmployee(String code);
+
+  List<Project> getAllProjects(String code);
 
   Optional<Project> getCurrentProject(String code);
+
+  List<Project> getProjectHistory(String code);
 }

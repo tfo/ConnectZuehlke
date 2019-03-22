@@ -20,7 +20,7 @@ public class PhoneNumberFunFactFactory implements FunFactFactory {
 
     @Override
     public boolean isPossible(SingleEmployee employee, List<Project> projects) {
-        return Objects.nonNull(employee.getMobilePhone()) || Objects.nonNull(employee.getBusinessPhone());
+        return Objects.nonNull(employee) && (Objects.nonNull(employee.getMobilePhone()) || Objects.nonNull(employee.getBusinessPhone()));
     }
 
     private String getPhoneNumber(SingleEmployee employee) {

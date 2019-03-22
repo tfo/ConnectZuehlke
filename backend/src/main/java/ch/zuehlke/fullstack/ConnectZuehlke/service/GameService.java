@@ -56,13 +56,11 @@ public class GameService {
         while (!foundUniqueSolution) {
             List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
             Employee selectedEmployee = selectEmployee(chosenEmployees);
-            SingleEmployee selectedSingleEmployee = this.employeeService.getSingleEmployee(selectedEmployee.getCode());
-            Optional<Project> currentProject = this.employeeService.getCurrentProject(selectedEmployee.getCode());
-            List<Project> projects = new ArrayList<>();
-            currentProject.ifPresent(projects::add);
+            Optional<SingleEmployee> selectedSingleEmployee = this.employeeService.getSingleEmployee(selectedEmployee.getCode());
+            List<Project> projects = this.employeeService.getAllProjects(selectedEmployee.getCode());
 
             List<Question> questions = this.questionCreator.create(chosenEmployees);
-            String funFact = this.funFactGenerator.generate(selectedSingleEmployee, projects);
+            String funFact = this.funFactGenerator.generate(selectedSingleEmployee.orElse(null), projects);
 
             game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee,
                     questions,
