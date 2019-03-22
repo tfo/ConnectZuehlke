@@ -15,6 +15,7 @@ export class GameStateService {
   employees: Employee[];
   secretEmployee: Employee;
   questions: Question[];
+  funFact: string;
 
   questionCount: number;
   missedQuestionCount: number;
@@ -29,6 +30,7 @@ export class GameStateService {
     this.employees = game.employees;
     this.secretEmployee = game.selectedEmployee;
     this.questions = game.questions;
+    this.funFact = game.funFact;
 
     this.questionCount = 0;
     this.missedQuestionCount = 0;
@@ -39,6 +41,7 @@ export class GameStateService {
     this.employees = undefined;
     this.secretEmployee = undefined;
     this.questions = undefined;
+    this.funFact = undefined;
 
     this.questionCount = 0;
     this.missedQuestionCount = 0;

@@ -26,7 +26,7 @@ export const QUESTIONS: Question[] = [
   )
 ];
 
-export const GAME: Game = new Game('game-id', SECRET_EMPLOYEES, SECRET_EMPLOYEES[2], QUESTIONS);
+export const GAME: Game = new Game('game-id', SECRET_EMPLOYEES, SECRET_EMPLOYEES[2], QUESTIONS, 'fun-fact');
 
 @Injectable({providedIn: 'root'})
 export class GameServiceMock implements GameService {

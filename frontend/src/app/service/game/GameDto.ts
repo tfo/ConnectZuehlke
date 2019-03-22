@@ -6,4 +6,5 @@ export interface GameDto {
   employees: EmployeeDto[];
   selectedEmployee: EmployeeDto;
   questions: QuestionDto[];
+  funFact: string;
 }

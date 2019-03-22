@@ -10,6 +10,6 @@ export class GameDtoMapper {
     const selectedEmployee = EmployeeDtoMapper.mapFromDto(dto.selectedEmployee);
     const questions = QuestionDtoMapper.mapFromDtos(dto.questions);
 
-    return new Game(dto.id, employees, selectedEmployee, questions);
+    return new Game(dto.id, employees, selectedEmployee, questions, dto.funFact);
   }
 }

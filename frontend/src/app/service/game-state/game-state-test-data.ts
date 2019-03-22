@@ -75,6 +75,7 @@ export class GameStateTestData {
       'game-id',
       [this.employee01(), this.employee02(), this.employee03(), this.employee04()],
       this.selectedEmployee(),
-      [this.question01(), this.question02(), this.question03()]);
+      [this.question01(), this.question02(), this.question03()],
+      'The secret person\'s phone number ends with 45.');
   }
 }
