@@ -3,6 +3,7 @@ package ch.zuehlke.fullstack.ConnectZuehlke.service.fact;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.Project;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -19,7 +20,7 @@ public class WorkedInFunFactFactory implements FunFactFactory {
 
     @Override
     public boolean isPossible(SingleEmployee employee, List<Project> projects) {
-        return !projects.isEmpty();
+        return !CollectionUtils.isEmpty(projects);
     }
 
     private Project chooseProject(List<Project> projects) {

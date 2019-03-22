@@ -1,5 +1,6 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.dto;
 
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.Project;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.LinkedHashMap;
@@ -20,5 +21,9 @@ public class ProjectDto {
 
     public String getIndustry() {
         return industry;
+    }
+
+    public Project toProject() {
+        return new Project(customerName, industry);
     }
 }

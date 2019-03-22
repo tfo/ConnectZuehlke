@@ -9,11 +9,13 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.text.MessageFormat;
+import java.util.*;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.HttpMethod.GET;
@@ -34,15 +36,13 @@ public class InsightEmployeeServiceRemote implements InsightEmployeeService {
                 .exchange("/employees", GET, null, new ParameterizedTypeReference<List<EmployeeDto>>() {
                 });
 
-        return response.getBody().stream()
-                .map(EmployeeDto::toEmployee)
-                .collect(toList());
+        return mapList(response.getBody(), EmployeeDto::toEmployee);
     }
 
     @Override
     public byte[] getEmployeePicture(String id) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_OCTET_STREAM));
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
@@ -55,11 +55,25 @@ public class InsightEmployeeServiceRemote implements InsightEmployeeService {
     }
 
     @Override
-    public SingleEmployee getSingleEmployee(String code) {
+    public Optional<SingleEmployee> getSingleEmployee(String code) {
         ResponseEntity<SingleEmployeeDto> response = this.insightRestTemplate
                 .getForEntity("/employees/" + code, SingleEmployeeDto.class);
 
-        return response.getBody().toSingleEmployee();
+        if (Objects.isNull(response.getBody())) {
+            return Optional.empty();
+        }
+
+        return Optional.of(response.getBody().toSingleEmployee());
+    }
+
+    @Override
+    public List<Project> getAllProjects(String code) {
+        List<Project> projects = new ArrayList<>();
+
+        getCurrentProject(code).ifPresent(projects::add);
+        projects.addAll(getProjectHistory(code));
+
+        return projects;
     }
 
     @Override
@@ -67,10 +81,41 @@ public class InsightEmployeeServiceRemote implements InsightEmployeeService {
         ResponseEntity<List<ProjectDto>> response = this.insightRestTemplate
                 .exchange("/employees/" + code + "/projects/current", GET, null, new ParameterizedTypeReference<List<ProjectDto>>() {
                 });
-        if (response.getBody().isEmpty()) {
+
+        if (CollectionUtils.isEmpty(response.getBody())) {
             return Optional.empty();
         }
+
         ProjectDto projectDto = response.getBody().get(0);
-        return Optional.of(new Project(projectDto.getCustomerName(), ""));
+        return Optional.of(projectDto.toProject());
+    }
+
+    @Override
+    public List<Project> getProjectHistory(String code) {
+        String url = MessageFormat.format("/employees/{0}/projects/history", code);
+
+        ResponseEntity<List<ProjectDto>> response = this.insightRestTemplate
+                .exchange(url, GET, null, new ParameterizedTypeReference<List<ProjectDto>>() {
+                });
+
+        List<ProjectDto> body = response.getBody();
+        if (CollectionUtils.isEmpty(body)) {
+            return Collections.emptyList();
+        }
+
+        return body.stream()
+                .filter(dto -> Objects.nonNull(dto.getCustomerName()))
+                .map(ProjectDto::toProject)
+                .collect(toList());
+    }
+
+    private <T, R> List<R> mapList(List<T> list, Function<? super T, ? extends R> mapper) {
+        if (CollectionUtils.isEmpty(list)) {
+            return Collections.emptyList();
+        }
+
+        return list.stream()
+                .map(mapper)
+                .collect(toList());
     }
 }
