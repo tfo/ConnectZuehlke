@@ -5,7 +5,7 @@ import {faHeartBroken} from '@fortawesome/free-solid-svg-icons';
 import {GameRestService} from '../service/game/game.service-rest';
 
 @Component({
-  selector: 'endgame-dialog',
+  selector: 'app-endgame-dialog',
   templateUrl: './endgame-dialog.component.html',
   styleUrls: ['./endgame-dialog.component.scss']
 })

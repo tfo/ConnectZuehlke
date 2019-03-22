@@ -13,6 +13,40 @@
   padding-top: 20px;
   font-weight: bold;
   font-size: 15pt;
+  -webkit-animation: slideRight 3s; /* Safari, Chrome and Opera > 12.1 */
+  animation: slideRight 3s;
+}
+
+@keyframes slideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-150%);
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@-webkit-keyframes slideRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-150%);
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0%);
+  }
 }
 
 $picture-size: 120px;
