@@ -11,5 +11,5 @@ public interface InsightEmployeeService {
 
   byte[] getEmployeePicture(String id) throws IOException;
 
-  Employee getEmployee(String code);
+  SingleEmployee getSingleEmployee(String code);
 }

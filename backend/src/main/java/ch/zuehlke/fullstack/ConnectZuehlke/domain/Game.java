@@ -1,5 +1,7 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -9,10 +11,10 @@ public class Game {
 
     private final String id;
     private final List<Employee> employees;
-    private final Employee selectedEmployee;
+    private final SingleEmployee selectedEmployee;
     private final List<Question> questions;
 
-    public Game(String id, List<Employee> employees, Employee selectedEmployee, List<Question> questions) {
+    public Game(String id, List<Employee> employees, SingleEmployee selectedEmployee, List<Question> questions) {
         this.id = id;
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
@@ -23,7 +25,7 @@ public class Game {
         Set<Integer> idsMatchingSelectedEmployee = employees.stream()
                 .map(Employee::getId)
                 .collect(Collectors.toSet());
-        Integer selectedEmployeeId = selectedEmployee.getId();
+        Integer selectedEmployeeId = selectedEmployee.getEmployee().getId();
 
         for (Question question : questions) {
             List<Integer> notMatchingIds = question.getAnswers().stream()
@@ -38,7 +40,7 @@ public class Game {
         return idsMatchingSelectedEmployee.size() == 1;
     }
 
-    public Employee getSelectedEmployee() {
+    public SingleEmployee getSelectedEmployee() {
         return selectedEmployee;
     }
 

@@ -1,6 +1,7 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service;
 
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.dto.EmployeeDto;
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.dto.SingleEmployeeDto;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -52,10 +53,10 @@ public class InsightEmployeeServiceRemote implements InsightEmployeeService {
     }
 
     @Override
-    public Employee getEmployee(String code) {
-        ResponseEntity<EmployeeDto> response = this.insightRestTemplate
-                .getForEntity("/employees/" + code, EmployeeDto.class);
+    public SingleEmployee getSingleEmployee(String code) {
+        ResponseEntity<SingleEmployeeDto> response = this.insightRestTemplate
+                .getForEntity("/employees/" + code, SingleEmployeeDto.class);
 
-        return response.getBody().toEmployee();
+        return response.getBody().toSingleEmployee();
     }
 }

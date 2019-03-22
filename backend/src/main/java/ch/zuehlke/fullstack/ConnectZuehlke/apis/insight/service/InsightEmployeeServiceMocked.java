@@ -33,7 +33,7 @@ public class InsightEmployeeServiceMocked implements InsightEmployeeService {
     }
 
     @Override
-    public Employee getEmployee(String code) {
-        return EMPLOYEES.stream().filter(employee -> employee.getCode().equals(code)).findFirst().orElse(null);
+    public SingleEmployee getSingleEmployee(String code) {
+        return null;
     }
 }

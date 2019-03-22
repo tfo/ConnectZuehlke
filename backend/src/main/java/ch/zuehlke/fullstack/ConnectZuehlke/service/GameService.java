@@ -3,6 +3,7 @@ package ch.zuehlke.fullstack.ConnectZuehlke.service;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.dto.GenderDto;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.service.GenderizeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.QuestionCreator;
@@ -32,10 +33,6 @@ public class GameService {
         this.questionCreator = questionCreator;
     }
 
-    private static final List<String> swappedMaleToFemale = Arrays.asList(
-            "sigl", "caas", "mase", "fras", "lonk", "osan", "icke", "allo", "amsa", "mavi", "juwe", "yuwa", "vifi", "elvu", "tapl", "stom", "nate", "vikr", "vemi", "sodo", "krst", "kean", "tkrs", "anmi", "susu", "ruvi", "joeh", "kara", "leba", "make", "anre", "acif", "kadi", "kaal", "vini", "cehe", "mapo", "kool", "emgr", "mjan", "stan", "albr", "chka", "tang", "insc", "likl", "isro", "doja", "ero", "jatr", "sfo", "marb", "anha", "toma", "issc", "sasc", "coeg", "anen", "aku", "ami", "fme", "codo", "sge", "doro", "piwi", "chh", "clsa", "hopa", "bekn", "voma", "alli", "mele", "lios", "rist", "pai", "jse", "dahu", "rapo", "irca", "clar", "tiko", "vigo", "mera", "maco", "kaba", "kwl", "kage", "anra", "held", "brad", "kafa", "anst", "duna", "ansh", "basc", "stil", "dats", "yuca", "asla", "alim", "suen", "inli", "jeli", "vga", "lich", "jpro", "ivdi", "sahi", "desc", "mali", "baho"
-    );
-
     private static final List<String> profilesWithoutPicture = Arrays.asList(
             "dasu", "sezu", "sigl", "mibi", "frae", "pali", "juja", "stam", "brma", "kema", "sesz", "koal", "milk", "dmmo", "hawa", "vybe", "algr", "maas", "urmi", "kean", "midi", "pane", "ruvi", "chey", "nidu", "luvb", "domg", "jawy", "sebu", "mana", "jodi", "jaha", "toro", "acif", "nikw", "rojo", "dach", "tmp_insight_api", "paam", "hith", "javo", "nakh", "milm", "albr", "qych", "xdwu", "dhja", "grub", "mapr", "lepe", "anap", "rugu", "chbr", "redg", "domo", "atan", "joek", "tohe", "mapa", "freh", "nibu", "jaka", "jazz", "oldi", "hohe", "alme", "pawi", "jegr", "sahi", "sepe", "stpa", "sils", "adsp", "resc", "noro"
     );
@@ -55,8 +52,9 @@ public class GameService {
         while (!foundUniqueSolution) {
             List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
             Employee selectedEmployee = selectEmployee(chosenEmployees);
+            SingleEmployee selectedSingleEmployee = this.employeeService.getSingleEmployee(selectedEmployee.getCode());
 
-            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee, this.questionCreator.create(chosenEmployees));
+            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedSingleEmployee, this.questionCreator.create(chosenEmployees));
 
             foundUniqueSolution = game.hasUniqueSolution();
         }

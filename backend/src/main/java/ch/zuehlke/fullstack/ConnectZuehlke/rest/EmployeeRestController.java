@@ -2,6 +2,7 @@ package ch.zuehlke.fullstack.ConnectZuehlke.rest;
 
 
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.SingleEmployee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/api/employee/{code}")
-    public Employee employee(@PathVariable(value = "code") String code) {
-        return employeeService.getEmployee(code);
+    public SingleEmployee employee(@PathVariable(value = "code") String code) {
+        return employeeService.getSingleEmployee(code);
     }
 
     @GetMapping(value = "/api/employee/{id}/picture",
