@@ -6,12 +6,12 @@ import java.util.Optional;
 
 public enum Country {
     ASIA("Asia", "Hong Kong", "Singapur", "Singapore"),
-    AUSTRIA("Austria","Wien"),
-    BULGARIA("Bulgaria","Sofia"),
-    GERMANY("Germany","Eschborn", "München", "Muenchen", "Hamburg", "Stuttgart", "Hannover"),
-    SERBIA("Serbia", "Belgrade", "New Belgrade"),
-    SWITZERLAND("Switzerland", "Bern", "Schlieren"),
-    UNITED_KINGDOM("United Kingdom", "London", "Manchester"),
+    AUSTRIA("A","Wien"),
+    BULGARIA("BGR","Sofia"),
+    GERMANY("DE","Eschborn", "München", "Muenchen", "Hamburg", "Stuttgart", "Hannover"),
+    SERBIA("SRB", "Belgrade", "New Belgrade"),
+    SWITZERLAND("CH", "Bern", "Schlieren"),
+    UNITED_KINGDOM("UK", "London", "Manchester"),
     OTHERS("Somewhere else");
 
     private final String name;
