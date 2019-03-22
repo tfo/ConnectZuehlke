@@ -12,7 +12,7 @@ public enum Country {
     SERBIA("Serbia", "Belgrade", "New Belgrade"),
     SWITZERLAND("Switzerland", "Bern", "Schlieren"),
     UNITED_KINGDOM("United Kingdom", "London", "Manchester"),
-    OTHERS("Others");
+    OTHERS("Somewhere else");
 
     private final String name;
     private final List<String> locations;
