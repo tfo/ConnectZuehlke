@@ -1,5 +1,6 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.service;
 
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.service.MockedGenderizeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.EmployeeBuilder;
@@ -179,7 +180,7 @@ public class GameServiceTest {
     public final void setUp() {
         this.employeeService = mock(InsightEmployeeService.class);
 
-        this.service = new GameService(employeeService, QUESTION_CREATOR, mock(RestTemplateBuilder.class));
+        this.service = new GameService(employeeService, new MockedGenderizeService(), QUESTION_CREATOR);
     }
 
     @Test

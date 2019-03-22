@@ -1,5 +1,7 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.service;
 
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.dto.GenderDto;
+import ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.service.GenderizeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
@@ -7,38 +9,27 @@ import ch.zuehlke.fullstack.ConnectZuehlke.domain.QuestionCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class GameService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GameService.class);
 
-    private final RestTemplate genderizeRestTemplate;
-    @Value("${genderize.url}")
-    private String genderizeUrl;
 
     private final InsightEmployeeService employeeService;
+    private final GenderizeService genderizeService;
     private final QuestionCreator questionCreator;
 
     @Autowired
     public GameService(InsightEmployeeService employeeService,
-                       QuestionCreator questionCreator,
-                       RestTemplateBuilder restTemplateBuilder) {
+                       GenderizeService genderizeService,
+                       QuestionCreator questionCreator) {
         this.employeeService = employeeService;
+        this.genderizeService = genderizeService;
         this.questionCreator = questionCreator;
-
-        genderizeRestTemplate = restTemplateBuilder
-                .rootUri(genderizeUrl)
-                .build();
     }
 
     private static final List<String> swappedMaleToFemale = Arrays.asList(
@@ -180,24 +171,31 @@ public class GameService {
         return game;
     }
 
+//    private void overrideGender(List<Employee> allEmployees) {
+//        for (Employee employee : allEmployees) {
+//            if (swappedMaleToFemale.contains(employee.getCode())) {
+//                employee.setGender(1);
+//            }
+//        }
+//    }
+
     private void overrideGender(List<Employee> allEmployees) {
         for (Employee employee : allEmployees) {
-            if (swappedMaleToFemale.contains(employee.getCode())) {
-                employee.setGender(1);
+            if (employee.getGender() > 0) {
+                continue; //skip if it's not default male
+            }
+
+            Optional<GenderDto> optional = this.genderizeService.loadGender(employee.getFirstName());
+            if (optional.isPresent()) {
+                GenderDto gender = optional.get();
+                if (gender.getGender() != null) {
+                    adaptGenderBasedOnGenderizeApi(employee, gender);
+                }
             }
         }
     }
 
-    /*
-    private void overrideGender(List<Employee> allEmployees) {
-        for (Employee employee : allEmployees) {
-            if (employee.getGender() > 0) continue; //skip if it's not default male
-            GenderDto gender = genderizeRestTemplate.getForObject(genderizeUrl+ "?name=" + employee.getFirstName(), GenderDto.class);
-            if (gender != null && gender.getGender() != null) adaptGenderBasedOnGenderizeApi(employee, gender);
-        }
-    }
-
-    private static void adaptGenderBasedOnGenderizeApi(Employee employee, GenderDto gender) {
+    private void adaptGenderBasedOnGenderizeApi(Employee employee, GenderDto gender) {
         int genderInt = gender.getGender().equalsIgnoreCase("female") ? 1 : 0;
         if (genderInt != employee.getGender()) {
             LOGGER.info("Mismatch!: " + employee.getCode() + " " + employee.getFirstName() + " " + employee.getLastName());
@@ -205,7 +203,6 @@ public class GameService {
             LOGGER.info("Probability: " + gender.getProbability());
         }
     }
-    */
 
     private List<Employee> chooseEmployees(List<Employee> allEmployees, int numberOfEmployees) {
         Collections.shuffle(allEmployees);

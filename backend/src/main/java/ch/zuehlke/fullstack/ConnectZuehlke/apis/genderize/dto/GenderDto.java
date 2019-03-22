@@ -1,4 +1,4 @@
-package ch.zuehlke.fullstack.ConnectZuehlke.domain;
+package ch.zuehlke.fullstack.ConnectZuehlke.apis.genderize.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,6 +23,10 @@ public class GenderDto {
         this.gender = gender;
         this.probability = probability;
         this.count = count;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getGender() {
