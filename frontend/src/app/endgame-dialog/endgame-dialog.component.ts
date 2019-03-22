@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material";
-import {GameStateService} from "../service/game-state/game-state.service";
-import {faHeartBroken} from "@fortawesome/free-solid-svg-icons";
-import {GameRestService} from "../service/game/game.service-rest";
+import {MatDialogRef} from '@angular/material';
+import {GameStateService} from '../service/game-state/game-state.service';
+import {faHeartBroken} from '@fortawesome/free-solid-svg-icons';
+import {GameRestService} from '../service/game/game.service-rest';
 
 @Component({
   selector: 'endgame-dialog',
@@ -13,7 +13,7 @@ export class EndgameDialogComponent implements OnInit {
 
   brokenIcon = faHeartBroken;
 
-  //used for creating array in html
+  // used for creating array in html
   Arr = Array;
 
   constructor(public dialogRef: MatDialogRef<EndgameDialogComponent>,

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {GameStateService} from '../../service/game-state/game-state.service';
-import {faHeart, faHeartBroken} from "@fortawesome/free-solid-svg-icons";
-import {MAX_LIVES} from "../../service/game/Constants";
+import {faHeart, faHeartBroken} from '@fortawesome/free-solid-svg-icons';
+import {MAX_LIVES} from '../../service/game/Constants';
 
 @Component({
   selector: 'app-topbar',
@@ -14,7 +14,7 @@ export class TopbarComponent {
   heartIcon = faHeart;
   brokenIcon = faHeartBroken;
 
-  //used for creating array in html
+  // used for creating array in html
   Arr = Array;
 
   constructor(public gameState: GameStateService) {
