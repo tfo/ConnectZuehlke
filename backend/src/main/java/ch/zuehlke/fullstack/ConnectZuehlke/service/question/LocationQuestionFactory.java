@@ -22,7 +22,7 @@ public class LocationQuestionFactory implements QuestionFactory {
     public Question create(List<Employee> employees) {
         Set<Country> topCountries = getTopTopCountries(employees);
 
-        Map<Country, Set<Integer>> employeePerCountry = new HashMap<>();
+        Map<Country, Set<Integer>> employeePerCountry = new TreeMap<>();
         employeePerCountry.put(Country.OTHERS, new HashSet<>());
 
         for (Employee employee : employees) {
