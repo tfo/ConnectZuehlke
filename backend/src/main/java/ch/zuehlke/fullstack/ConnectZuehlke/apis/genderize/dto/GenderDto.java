@@ -33,6 +33,10 @@ public class GenderDto {
         return gender;
     }
 
+    public boolean isFemale() {
+        return gender.equalsIgnoreCase("female");
+    }
+
     public double getProbability() {
         return probability;
     }

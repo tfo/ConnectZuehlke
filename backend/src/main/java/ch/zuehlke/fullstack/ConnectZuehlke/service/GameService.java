@@ -91,11 +91,12 @@ public class GameService {
     }
 
     private void adaptGenderBasedOnGenderizeApi(Employee employee, GenderDto gender) {
-        int genderInt = gender.getGender().equalsIgnoreCase("female") ? 1 : 0;
+        int genderInt = gender.isFemale() ? 1 : 0;
         if (genderInt != employee.getGender()) {
-            LOGGER.info("Mismatch!: " + employee.getCode() + " " + employee.getFirstName() + " " + employee.getLastName());
-            LOGGER.info("GenderDto: " + gender.getGender());
-            LOGGER.info("Probability: " + gender.getProbability());
+            LOGGER.info("Detect a mismatching gender for employee '{} {} ({})' found (Insight: {}, Genderize.io: {}/{}).",
+                    employee.getFirstName(), employee.getLastName(), employee.getCode(), employee.getGender(),
+                    gender.getGender(), gender.getProbability());
+            employee.setGender(genderInt);
         }
     }
 
