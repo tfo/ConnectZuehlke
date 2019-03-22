@@ -23,6 +23,7 @@ export class GameComponent implements OnInit {
     this.gameService.startNewGame.subscribe( () => {
       this.loadNewGame();
     } );
+    this.subscribeToGameEndSubject();
     this.gameService.startNewGame.next();
   }
 
@@ -30,17 +31,12 @@ export class GameComponent implements OnInit {
     this.gameState.deinitialize();
     this.gameService.createNewGame().subscribe(game => {
       this.gameState.initialize(game);
-      this.subscribeToGameEndSubject();
     });
   }
 
   private subscribeToGameEndSubject() {
     this.gameState.gameEnded.subscribe(() => {
-      if (!EndgameDialogComponent.open) {
         this.openEndgameDialog();
-        EndgameDialogComponent.open = true;
-      }
-
     });
   }
 

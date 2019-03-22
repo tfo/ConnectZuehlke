@@ -78,7 +78,7 @@ export class GameStateService {
     }
 
     if (this.hasWon || this.hasLost) {
-      this.gameEnded.next(true);
+      this.gameEnded.next();
     }
 
     return matchSecretEmployee;
