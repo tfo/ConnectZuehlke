@@ -5,15 +5,15 @@ import {Game} from '../../domain/Game';
 
 export class GameStateTestData {
 
-  static employee01() : Employee {
+  static employee01(): Employee {
     return new Employee('John', 'Doe', 1, 'jdo', 'CH');
   }
 
-  static employee02() : Employee {
+  static employee02(): Employee {
     return new Employee('Max', 'Mustermann', 2, 'mmu', 'CH');
   }
 
-  static employee03() : Employee {
+  static employee03(): Employee {
     return new Employee('Rita', 'Richterich', 3, 'riri', 'DE');
   }
 
