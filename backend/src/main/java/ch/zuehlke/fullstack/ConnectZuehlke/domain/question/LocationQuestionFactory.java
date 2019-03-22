@@ -7,12 +7,16 @@ import ch.zuehlke.fullstack.ConnectZuehlke.domain.Question;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.commons.lang3.tuple.Pair;
+import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static ch.zuehlke.fullstack.ConnectZuehlke.utils.IdGenerator.generateId;
+
+@Component
 public class LocationQuestionFactory implements QuestionFactory {
     @Override
     public Question create(List<Employee> employees) {
@@ -64,9 +68,5 @@ public class LocationQuestionFactory implements QuestionFactory {
                 .limit(2)
                 .map(Pair::getKey)
                 .collect(Collectors.toSet());
-    }
-
-    private String generateId() {
-        return UUID.randomUUID().toString();
     }
 }

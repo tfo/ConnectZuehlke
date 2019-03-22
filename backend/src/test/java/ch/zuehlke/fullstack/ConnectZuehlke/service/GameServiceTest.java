@@ -4,11 +4,15 @@ import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeS
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.EmployeeBuilder;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.QuestionCreator;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.GenderQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.GradeQuestionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -163,6 +167,11 @@ public class GameServiceTest {
                     .build()
     );
 
+    private static final QuestionCreator QUESTION_CREATOR = new QuestionCreator(Arrays.asList(
+            new GenderQuestionFactory(),
+            new GradeQuestionFactory()
+    ));
+
     private GameService service;
     private InsightEmployeeService employeeService;
 
@@ -170,7 +179,7 @@ public class GameServiceTest {
     public final void setUp() {
         this.employeeService = mock(InsightEmployeeService.class);
 
-        this.service = new GameService(employeeService, mock(RestTemplateBuilder.class));
+        this.service = new GameService(employeeService, QUESTION_CREATOR, mock(RestTemplateBuilder.class));
     }
 
     @Test

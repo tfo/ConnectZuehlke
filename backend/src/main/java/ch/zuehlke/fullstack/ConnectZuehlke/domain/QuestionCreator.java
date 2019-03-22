@@ -1,197 +1,28 @@
 package ch.zuehlke.fullstack.ConnectZuehlke.domain;
 
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.LocationQuestionFactory;
-import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.QuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.question.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
-class QuestionCreator {
-
-    private static final int PERCENTAGE_FULL_TIME = 100;
-
-    private final List<Employee> employees;
-    private final Employee selectedEmployee;
+@Component
+public class QuestionCreator {
 
     private final Collection<QuestionFactory> questionFactories;
 
-    QuestionCreator(List<Employee> employees, Employee selectedEmployee) {
-        this.employees = employees;
-        this.selectedEmployee = selectedEmployee;
-
-        this.questionFactories = Collections.singletonList(
-                new LocationQuestionFactory()
-        );
+    @Autowired
+    public QuestionCreator(Collection<QuestionFactory> questionFactories) {
+        this.questionFactories = questionFactories;
     }
 
-    List<Question> create() {
-        List<Question> questions = this.questionFactories
+    public List<Question> create(List<Employee> employees) {
+        return this.questionFactories
                 .stream()
                 .map(questionFactory -> questionFactory.create(employees))
                 .collect(Collectors.toList());
-
-        questions.add(createFullTimeQuestion());
-        questions.add(createBankHoursQuestion());
-        questions.add(createHasSkillProfileCompletedQuestion());
-        questions.add(createIsManagementQuestion());
-        questions.add(createSexQuestion());
-        questions.add(createFlexPayQuestion());
-        questions.add(createEntryDateQuestion());
-        questions.add(createGradeQuestion());
-
-        return questions;
-    }
-
-    private Question createFullTimeQuestion() {
-        Set<Integer> yesMatchingEmployeeIds = this.employees.stream()
-                .filter(employee -> employee.getPercentage() == PERCENTAGE_FULL_TIME)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-        Set<Integer> noMatchingEmployeeIds = this.employees.stream()
-                .filter(employee -> employee.getPercentage() < PERCENTAGE_FULL_TIME)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "Does the person work ... for Zühlke?", Arrays.asList(
-                new Answer(generateId(), "full time", yesMatchingEmployeeIds, "The secret person works full time."),
-                new Answer(generateId(), "part time", noMatchingEmployeeIds, "The secret person works part time.")
-        ));
-    }
-
-    private Question createBankHoursQuestion() {
-        Set<Integer> benchWarmerIds = employees.stream()
-                .filter(employee -> employee.getBankHours() >= 100)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> notBenchWarmerIds = employees.stream()
-                .filter(employee -> employee.getBankHours() < 100)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "How many hours was the person on the bench?", Arrays.asList(
-                new Answer(generateId(), ">= 100", benchWarmerIds, "The secret person was more than 100 hours on the bench."),
-                new Answer(generateId(), "< 100", notBenchWarmerIds, "The secret person was less than 100 hours on the bench.")
-        ));
-    }
-
-    private Question createHasSkillProfileCompletedQuestion() {
-        Set<Integer> completedIds = employees.stream()
-                .filter(employee -> employee.getSkillProfileCompleteness() >= 100)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> notCompletedIds = employees.stream()
-                .filter(employee -> employee.getSkillProfileCompleteness() < 100)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "Has the person ... her/his skill profile?", Arrays.asList(
-                new Answer(generateId(), "completed", completedIds, "The secret person has completed her/his skill profile."),
-                new Answer(generateId(), "not completed", notCompletedIds, "The secret person has not completed her/his skill profile.")
-        ));
-    }
-
-    private Question createIsManagementQuestion() {
-        Set<Integer> managementIds = employees.stream()
-                .filter(Employee::isManagement)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> notManagementIds = employees.stream()
-                .filter(employee -> !employee.isManagement())
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "What's the role of the person?", Arrays.asList(
-                new Answer(generateId(), "Management", managementIds, "The secret person is in the Zühlke management."),
-                new Answer(generateId(), "Not management", notManagementIds, "The secret person is not in the Zühlke management.")
-        ));
-    }
-
-    private Question createSexQuestion() {
-        Set<Integer> maleIds = employees.stream()
-                .filter(employee -> employee.getGender() == 0)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> femaleIds = employees.stream()
-                .filter(employee -> employee.getGender() != 0)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "The person is ...?", Arrays.asList(
-                new Answer(generateId(), "Male", maleIds, "The secret person is male."),
-                new Answer(generateId(), "Female", femaleIds, "The secret person is female.")
-        ));
-    }
-
-    private Question createFlexPayQuestion() {
-        Set<Integer> flexPayerIds = employees.stream()
-                .filter(Employee::isFlexpay)
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> fixPayerIds = employees.stream()
-                .filter(employee -> !employee.isFlexpay())
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "The person has ...?", Arrays.asList(
-                new Answer(generateId(), "flex salary", flexPayerIds, "The secret person has a flexible salary."),
-                new Answer(generateId(), "fix salary", fixPayerIds, "The secret person a fixed salary.")
-        ));
-    }
-
-    private Question createEntryDateQuestion() {
-        Set<Integer> oldIds = employees.stream()
-                .filter(employee -> worksForLongInZuehlke(employee.getEntryDate()))
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> youngIds = employees.stream()
-                .filter(employee -> !worksForLongInZuehlke(employee.getEntryDate()))
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "The person joined Zühlke ...?", Arrays.asList(
-                new Answer(generateId(), "before 2017", oldIds, "The secret person started before 2017 at Zühlke."),
-                new Answer(generateId(), "after 2017", youngIds, "The secret person started after 2017 at Zühlke.")
-        ));
-    }
-
-    private static boolean worksForLongInZuehlke(String entryDate) {
-        if (!entryDate.contains("-")) return true;
-
-        String[] splits = entryDate.split("-");
-        Integer year = Integer.valueOf(splits[0]);
-        return year <= 2017;
-    }
-
-    private Question createGradeQuestion() {
-        Set<Integer> managementMatchingEmployeeIds = employees.stream()
-                .filter(employee -> employee.getGrade().isManagement())
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> leadMatchingEmployeeIds = employees.stream()
-                .filter(employee -> employee.getGrade().isLead())
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        Set<Integer> normalMatchingEmployeeIds = employees.stream()
-                .filter(employee -> employee.getGrade().isNormalEmployee())
-                .map(Employee::getId)
-                .collect(Collectors.toSet());
-
-        return new Question(generateId(), "Which grade has the person?", Arrays.asList(
-                new Answer(generateId(), "Management", managementMatchingEmployeeIds, "The secret person works in the management (Grade A)."),
-                new Answer(generateId(), "Lead", leadMatchingEmployeeIds, "The secret person works as lead (Grade B, C)."),
-                new Answer(generateId(), "Normal", normalMatchingEmployeeIds, "The secret person works as normal employee (Grade D - G).")
-        ));
-    }
-
-    private String generateId() {
-        return UUID.randomUUID().toString();
     }
 }

@@ -3,6 +3,7 @@ package ch.zuehlke.fullstack.ConnectZuehlke.service;
 import ch.zuehlke.fullstack.ConnectZuehlke.apis.insight.service.InsightEmployeeService;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Game;
+import ch.zuehlke.fullstack.ConnectZuehlke.domain.QuestionCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +20,25 @@ import java.util.UUID;
 @Service
 public class GameService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameService.class);
+
     private final RestTemplate genderizeRestTemplate;
     @Value("${genderize.url}")
     private String genderizeUrl;
-    private static final Logger LOGGER = LoggerFactory.getLogger(GameService.class);
 
     private final InsightEmployeeService employeeService;
+    private final QuestionCreator questionCreator;
 
     @Autowired
     public GameService(InsightEmployeeService employeeService,
+                       QuestionCreator questionCreator,
                        RestTemplateBuilder restTemplateBuilder) {
+        this.employeeService = employeeService;
+        this.questionCreator = questionCreator;
+
         genderizeRestTemplate = restTemplateBuilder
                 .rootUri(genderizeUrl)
                 .build();
-        this.employeeService = employeeService;
     }
 
     private static final List<String> swappedMaleToFemale = Arrays.asList(
@@ -164,7 +170,7 @@ public class GameService {
             List<Employee> chosenEmployees = chooseEmployees(allEmployees, numberOfEmployees);
             Employee selectedEmployee = selectEmployee(chosenEmployees);
 
-            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee);
+            game = new Game(UUID.randomUUID().toString(), chosenEmployees, selectedEmployee, this.questionCreator.create(chosenEmployees));
 
             foundUniqueSolution = game.hasUniqueSolution();
         }

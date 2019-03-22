@@ -12,11 +12,11 @@ public class Game {
     private final Employee selectedEmployee;
     private final List<Question> questions;
 
-    public Game(String id, List<Employee> employees, Employee selectedEmployee) {
+    public Game(String id, List<Employee> employees, Employee selectedEmployee, List<Question> questions) {
         this.id = id;
         this.employees = employees;
         this.selectedEmployee = selectedEmployee;
-        this.questions = new QuestionCreator(employees, selectedEmployee).create();
+        this.questions = questions;
     }
 
     public boolean hasUniqueSolution() {
