@@ -41,7 +41,24 @@ public class EmployeeDto {
     private int id;
 
     public Employee toEmployee() {
-        return new EmployeeBuilder().setFirstName(getFirstName()).setLastName(getLastName()).setId(getId()).setCode(getCode()).setLocation(getLocation()).setPercentage(getPercentage()).setIsManagement(isManagement()).setIsPassionated(isPassionated()).setFlexpay(isFlexpay()).setExperience(getExperience()).setSkillProfileCompleteness(getSkillProfileCompleteness()).setEntryDate(getEntryDate()).setGrade(getGrade()).setGender(getGender()).setPrivateAddressCity(getPrivateAddressCity()).setBankHours(getBankHours()).build();
+        return new EmployeeBuilder()
+                .setFirstName(getFirstName())
+                .setLastName(getLastName())
+                .setId(getId())
+                .setCode(getCode())
+                .setLocation(getLocation())
+                .setPercentage(getPercentage())
+                .setIsManagement(isManagement())
+                .setIsPassionated(isPassionated())
+                .setFlexpay(isFlexpay())
+                .setExperience(getExperience())
+                .setSkillProfileCompleteness(getSkillProfileCompleteness())
+                .setEntryDate(getEntryDate())
+                .setGrade(getGrade())
+                .setGender(getGender())
+                .setPrivateAddressCity(getPrivateAddressCity())
+                .setBankHours(getBankHours())
+                .build();
     }
 
     public String getLastName() {
@@ -106,5 +123,9 @@ public class EmployeeDto {
 
     public int getBankHours() {
         return bankHours;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 }

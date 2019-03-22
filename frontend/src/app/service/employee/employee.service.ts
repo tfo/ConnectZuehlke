@@ -21,15 +21,6 @@ export class EmployeeService {
       );
   }
 
-  public getEmployee(id: string): Observable<Employee> {
-    return this.http
-      .get<EmployeeDto>(`/api/employee/${id}`)
-      .pipe(
-        catchError(this.handleError('getEmployee', null)),
-        map(employee => EmployeeDtoMapper.mapFromDto(employee))
-      );
-  }
-
   /**
    * Handle Http operation that failed.
    * Let the app continue.

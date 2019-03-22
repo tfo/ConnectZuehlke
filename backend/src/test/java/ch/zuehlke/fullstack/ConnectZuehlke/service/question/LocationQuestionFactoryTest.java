@@ -1,11 +1,12 @@
-package ch.zuehlke.fullstack.ConnectZuehlke.domain.question;
+package ch.zuehlke.fullstack.ConnectZuehlke.service.question;
 
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.*;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.LocationQuestionFactory;
+import ch.zuehlke.fullstack.ConnectZuehlke.service.question.QuestionFactory;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

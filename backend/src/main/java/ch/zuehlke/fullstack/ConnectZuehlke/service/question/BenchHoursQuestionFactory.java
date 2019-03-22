@@ -1,9 +1,8 @@
-package ch.zuehlke.fullstack.ConnectZuehlke.domain.question;
+package ch.zuehlke.fullstack.ConnectZuehlke.service.question;
 
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Answer;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Employee;
 import ch.zuehlke.fullstack.ConnectZuehlke.domain.Question;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
